@@ -64,7 +64,7 @@ class PostTypeController extends Controller
     {
         $request->validate([
             'post_type' => 'required',
-            'uri' => 'required|unique:cl_post_type'
+            'uri' => 'required|unique:cl_post_type,uri'
         ]);
 
         $medium_width = env('MEDIUM_WIDTH');
@@ -155,7 +155,7 @@ class PostTypeController extends Controller
     {
         $request->validate([
             'post_type' => 'required',
-            'uri' => 'required'
+            'uri' => 'required|unique:cl_post_type,uri,' . $id,
         ]);
         $medium_width = env('MEDIUM_WIDTH');
         $medium_height = env('MEDIUM_HEIGHT');

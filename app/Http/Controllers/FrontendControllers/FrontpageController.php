@@ -122,7 +122,7 @@ class FrontpageController extends Controller
         $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->orderBy('ordering', 'asc')->paginate(12);
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
         $pos_type = PostTypeModel::where('id', $data->post_type)->first();
-        $related = PostModel::where('post_type', $pos_type->id)->where('id', '!=', $data->id)->where('post_parent', 0)->get();
+        $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', 0)->get();
         $contact = PostTypeModel::where('id', '20')->first();
 
         // dd($data,$associated_posts,$data_child);

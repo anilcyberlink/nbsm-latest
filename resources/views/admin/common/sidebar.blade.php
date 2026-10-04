@@ -52,6 +52,7 @@
                         request()->is('admin/about*') ||
                         request()->is('admin/terms-and-conditions*') ||
                         request()->is('admin/services*') ||
+                        request()->is('admin/insights*') ||
                         request()->is('admin/industries*') ||
                         request()->is('admin/international*') ||
                         request()->is('admin/doing-business-in-nepal') ||
