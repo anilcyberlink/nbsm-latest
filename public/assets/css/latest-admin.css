@@ -1,0 +1,1150 @@
+/* =========================================
+   ADMIN CUSTOM STYLES
+   ========================================= */
+
+/* Sidebar */
+#sidebar_left,
+#sidebar_left .sidebar-left-content {
+    background: #0f4c81 !important;
+}
+
+#sidebar_left .sidebar-menu>li>a {
+    color: #fff !important;
+    background: transparent !important;
+}
+
+#sidebar_left .sidebar-menu>li>a:hover,
+#sidebar_left .sidebar-menu>li.active>a {
+    background: #083b66 !important;
+    color: #fff !important;
+}
+
+#sidebar_left .sidebar-menu>li>a span {
+    color: #fff !important;
+}
+
+#sidebar_left .sidebar-label {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* =========================================
+   NBMS ADMIN - BANNER PAGE
+   ========================================= */
+
+/* Page */
+.nbms-page {
+    height: auto !important;
+    padding: 20px;
+}
+
+/* Page Header */
+.nbms-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.nbms-page-title {
+    margin: 0 0 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.nbms-page-title i {
+    margin-right: 8px;
+    color: #0f4c81;
+}
+
+.nbms-page-subtitle {
+    margin: 0;
+    color: #7b8490;
+    font-size: 13px;
+}
+
+/* Main panel */
+.nbms-panel {
+    border: 0 !important;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    background: #fff;
+}
+
+.nbms-panel-body {
+    padding: 0 !important;
+}
+
+/* Table */
+.nbms-table {
+    margin-bottom: 0 !important;
+}
+
+.nbms-table thead th {
+    background: #f5f7fa !important;
+    color: #4b5563 !important;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    padding: 14px 15px !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.nbms-table tbody td {
+    padding: 14px 15px !important;
+    vertical-align: middle !important;
+    border-top: 1px solid #edf0f3 !important;
+    color: #4b5563;
+}
+
+.nbms-table tbody tr {
+    transition: background-color .15s ease;
+}
+
+.nbms-table tbody tr:hover {
+    background: #f8fafc !important;
+}
+
+/* Serial number */
+.nbms-sn {
+    color: #8a94a3 !important;
+    font-weight: 500;
+}
+
+/* Banner title */
+.nbms-banner-title {
+    font-weight: 500;
+    color: #26364a;
+}
+
+/* Banner image */
+.nbms-banner-image {
+    width: 150px;
+    height: 65px;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #e5e7eb;
+    background: #f5f7fa;
+}
+
+.nbms-banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* No image */
+.nbms-no-image {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.nbms-no-image i {
+    margin-right: 4px;
+}
+
+/* Primary button */
+.nbms-btn-primary {
+    background: #0f4c81 !important;
+    border: 1px solid #0f4c81 !important;
+    color: #fff !important;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.nbms-btn-primary:hover {
+    background: #083b66 !important;
+    border-color: #083b66 !important;
+    color: #fff !important;
+}
+
+/* Action buttons */
+.nbms-action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.nbms-btn-edit,
+.nbms-btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-decoration: none !important;
+    transition: all .15s ease;
+}
+
+/* Edit */
+.nbms-btn-edit {
+    background: #eef5fb;
+    color: #0f4c81 !important;
+    border: 1px solid #d5e5f2;
+}
+
+.nbms-btn-edit:hover {
+    background: #0f4c81;
+    color: #fff !important;
+}
+
+/* Delete - currently commented in Blade */
+.nbms-btn-delete {
+    background: #fff1f1;
+    color: #c0392b !important;
+    border: 1px solid #f2d2d0;
+}
+
+.nbms-btn-delete:hover {
+    background: #c0392b;
+    color: #fff !important;
+}
+
+/* Empty state */
+.nbms-empty-state {
+    padding: 45px 20px !important;
+    color: #9ca3af;
+}
+
+.nbms-empty-state i {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 28px;
+    color: #cbd5e1;
+}
+
+/* =========================================
+   NBMS ADMIN - FORM / CREATE PAGE
+   ========================================= */
+
+/* Secondary button */
+.nbms-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f3f6f9 !important;
+    border: 1px solid #dce3e9 !important;
+    color: #0f4c81 !important;
+    padding: 7px 13px;
+    border-radius: 4px;
+    text-decoration: none !important;
+}
+
+.nbms-btn-secondary:hover {
+    background: #0f4c81 !important;
+    border-color: #0f4c81 !important;
+    color: #fff !important;
+}
+
+
+/* Form panel */
+.nbms-form {
+    margin: 0;
+}
+
+.nbms-form .nbms-panel {
+    border: 0 !important;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Panel heading */
+.nbms-panel-heading {
+    display: flex;
+    align-items: center;
+    min-height: 65px;
+    padding: 15px 20px !important;
+    background: #fff !important;
+    border-bottom: 1px solid #e8edf2 !important;
+}
+
+.nbms-panel-heading .panel-title {
+    display: block;
+    color: #26364a !important;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.nbms-panel-heading .panel-title i {
+    margin-right: 7px;
+    color: #0f4c81;
+}
+
+.nbms-panel-heading small {
+    display: block;
+    margin-top: 4px;
+    color: #8a94a3;
+    font-size: 12px;
+}
+
+
+/* Form body */
+.nbms-form-body {
+    padding: 25px 20px !important;
+    background: #fff;
+}
+
+
+/* Form groups */
+.nbms-form-group {
+    margin-bottom: 20px !important;
+}
+
+.nbms-form-group .control-label {
+    padding-top: 9px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* Inputs */
+.nbms-form-group .form-control {
+    min-height: 38px;
+    border: 1px solid #dce2e8;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #374151;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.nbms-form-group .form-control:focus {
+    border-color: #0f4c81;
+    box-shadow: 0 0 0 2px rgba(15, 76, 129, 0.08);
+}
+
+
+/* File input */
+.nbms-file-input {
+    padding: 7px 10px !important;
+}
+
+
+/* Help text */
+.nbms-help-text {
+    margin-top: 7px;
+    color: #8a94a3;
+    font-size: 11px;
+}
+
+.nbms-help-text i {
+    margin-right: 4px;
+    color: #0f4c81;
+}
+
+.nbms-help-text strong {
+    color: #667085;
+    font-weight: 600;
+}
+
+
+/* Submit */
+.nbms-submit-group {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+    padding-top: 10px;
+    border-top: 1px solid #edf0f3;
+}
+
+.nbms-btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 110px;
+    padding: 9px 18px;
+    border: 1px solid #0f4c81;
+    border-radius: 4px;
+    background: #0f4c81;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+.nbms-btn-submit:hover {
+    background: #083b66;
+    border-color: #083b66;
+    color: #fff;
+}
+
+/* =========================================
+   NBMS ADMIN - EDIT BANNER
+   ========================================= */
+
+.nbms-current-banner {
+    border: 1px solid #e3e8ed;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.nbms-current-banner-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e3e8ed;
+    background: #fff;
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.nbms-current-banner-header>span i {
+    margin-right: 5px;
+    color: #0f4c81;
+}
+
+.nbms-current-banner-image {
+    padding: 12px;
+    text-align: center;
+}
+
+.nbms-current-banner-image img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+
+/* Delete button */
+.nbms-current-banner-header .nbms-btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: #fff1f1;
+    border: 1px solid #f2d2d0;
+    color: #c0392b !important;
+    font-size: 11px;
+    text-decoration: none !important;
+}
+
+.nbms-current-banner-header .nbms-btn-delete:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+    color: #fff !important;
+}
+
+/* =========================================
+   NBMS ADMIN - POST TYPES
+   ========================================= */
+
+/* Status */
+.nbms-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.nbms-status-yes {
+    background: #edf7f1;
+    border: 1px solid #d3ebdc;
+    color: #27834d;
+}
+
+.nbms-status-no {
+    background: #f5f6f7;
+    border: 1px solid #e3e6e8;
+    color: #7b8490;
+}
+
+/* Date */
+.nbms-date {
+    color: #7b8490 !important;
+    font-size: 12px;
+}
+
+/* Create button */
+.nbms-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+/* =========================================
+   POST TYPE FORM
+   ========================================= */
+
+.nbms-form .nbms-help-text {
+    margin-top: 7px;
+}
+
+.nbms-form select.form-control {
+    cursor: pointer;
+}
+
+.nbms-form textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+/* =========================================
+   POST TYPE - EDIT
+   ========================================= */
+
+.nbms-current-banner {
+    margin-top: 12px;
+    max-width: 500px;
+    border: 1px solid #e3e8ed;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.nbms-current-banner-header {
+    padding: 9px 12px;
+    background: #fff;
+    border-bottom: 1px solid #e3e8ed;
+    color: #667085;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.nbms-current-banner-header i {
+    margin-right: 5px;
+    color: #0f4c81;
+}
+
+.nbms-current-banner-image {
+    padding: 12px;
+    text-align: center;
+}
+
+.nbms-current-banner-image img {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+/* =========================================
+   NBMS ADMIN - POST CATEGORIES
+   ========================================= */
+
+.nbms-category-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #26364a;
+    font-weight: 500;
+}
+
+.nbms-category-title i {
+    color: #0f4c81;
+}
+/* =========================================
+   POST CATEGORY FORM
+   ========================================= */
+
+.nbms-side-card {
+    background: #fff;
+    border: 0;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    overflow: hidden;
+}
+
+.nbms-side-card-header {
+    padding: 13px 16px;
+    border-bottom: 1px solid #e8edf2;
+    color: #26364a;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nbms-side-card-header i {
+    color: #0f4c81;
+    margin-right: 7px;
+}
+
+.nbms-side-card-body {
+    padding: 16px;
+}
+
+.nbms-status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #667085;
+    font-size: 13px;
+}
+
+.nbms-status-row strong {
+    color: #27834d;
+    font-weight: 600;
+}
+
+.nbms-btn-full {
+    width: 100%;
+}
+
+.nbms-side-card .form-control {
+    min-height: 38px;
+    border: 1px solid #dce2e8;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.nbms-side-card .form-control:focus {
+    border-color: #0f4c81;
+    box-shadow: 0 0 0 2px rgba(15, 76, 129, .08);
+}
+
+@media (max-width: 767px) {
+    .nbms-side-card {
+        margin-top: 15px;
+    }
+}
+/* =========================================
+   POST CATEGORY - EDIT THUMBNAIL
+   ========================================= */
+
+.nbms-current-thumbnail {
+    border: 1px solid #e3e8ed;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.nbms-thumbnail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 11px;
+    background: #fff;
+    border-bottom: 1px solid #e3e8ed;
+    color: #667085;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.nbms-thumbnail-image {
+    padding: 12px;
+    text-align: center;
+}
+
+.nbms-thumbnail-image img {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.nbms-divider {
+    margin: 15px 0;
+    border-top: 1px solid #edf0f3;
+}
+.nbms-page-header {
+    margin-bottom: 18px;
+}
+
+.nbms-page-title {
+    margin: 0 0 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.nbms-page-title i {
+    margin-right: 8px;
+    color: #0f4c81;
+}
+
+.nbms-page-subtitle {
+    margin: 0;
+    color: #7b8490;
+    font-size: 13px;
+}
+
+.nbms-page-notice {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f3f8fc;
+    border-left: 3px solid #0f4c81;
+    color: #667085;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.nbms-page-notice i {
+    color: #0f4c81;
+    margin-right: 5px;
+}
+
+.nbms-page-notice a {
+    color: #0f4c81;
+    font-weight: 500;
+}
+/* =========================================
+   NBMS - POST CREATE PAGE
+   ========================================= */
+
+.nbms-post-page {
+    padding: 20px;
+}
+
+.nbms-post-header {
+    margin-bottom: 18px;
+}
+
+.nbms-post-title {
+    margin: 0 0 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.nbms-post-title i {
+    margin-right: 8px;
+    color: #0f4c81;
+}
+
+.nbms-post-subtitle {
+    margin: 0;
+    color: #7b8490;
+    font-size: 13px;
+}
+
+
+/* Main Panel */
+
+.nbms-post-panel {
+    border: 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+}
+
+.nbms-post-panel .panel-heading {
+    background: #fff;
+    border-bottom: 1px solid #e8edf2;
+    padding: 15px 20px;
+}
+
+.nbms-post-panel .panel-title {
+    color: #26364a;
+    font-weight: 600;
+}
+
+.nbms-post-panel .panel-title i {
+    color: #0f4c81;
+    margin-right: 7px;
+}
+
+
+/* Form */
+
+.nbms-post-panel .form-group {
+    margin-bottom: 18px;
+}
+
+.nbms-post-panel .form-control {
+    border: 1px solid #dce2e8;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.nbms-post-panel .form-control:focus {
+    border-color: #0f4c81;
+    box-shadow: 0 0 0 2px rgba(15, 76, 129, .08);
+}
+
+
+/* Sidebar */
+
+.nbms-post-card {
+    background: #fff;
+    border: 0;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+}
+
+.nbms-post-card-header {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e8edf2;
+    color: #26364a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nbms-post-card-header i {
+    color: #0f4c81;
+    margin-right: 7px;
+}
+
+.nbms-post-card-body {
+    padding: 15px;
+}
+
+
+/* Sidebar Inputs */
+
+.nbms-post-card input[type="text"],
+.nbms-post-card input[type="number"],
+.nbms-post-card select {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid #dce2e8;
+    border-radius: 4px;
+    padding: 7px 10px;
+    box-shadow: none;
+}
+
+.nbms-post-card input:focus,
+.nbms-post-card select:focus {
+    border-color: #0f4c81;
+    outline: none;
+}
+
+
+/* Publish */
+
+.nbms-publish-btn {
+    width: 100%;
+    min-height: 38px;
+}
+
+
+/* Checkbox */
+
+.nbms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    cursor: pointer;
+    color: #4b5563;
+    font-size: 13px;
+}
+
+.nbms-checkbox input {
+    margin: 0;
+}
+
+
+/* File Inputs */
+
+.nbms-post-card input[type="file"] {
+    width: 100%;
+    font-size: 12px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 991px) {
+
+    .nbms-post-page {
+        padding: 15px;
+    }
+
+    .nbms-post-sidebar {
+        margin-top: 15px;
+    }
+
+}
+/* =========================================
+   TRADES MODULE
+   ========================================= */
+
+.trades-container {
+    padding: 15px 20px;
+}
+
+.trades-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.trades-header h3 {
+    margin: 0 0 4px;
+    font-size: 21px;
+    font-weight: 600;
+    color: #26364a;
+}
+
+.trades-header h3 i {
+    color: #0f4c81;
+    margin-right: 7px;
+}
+
+.trades-header p {
+    margin: 0;
+    color: #8a94a3;
+    font-size: 13px;
+}
+
+.trades-table-panel {
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    overflow: hidden;
+}
+
+.trades-table thead th {
+    font-weight: 600;
+    color: #465365;
+    border-bottom: 1px solid #e3e8ed;
+}
+
+.trades-table tbody td {
+    vertical-align: middle;
+}
+
+.trades-title strong {
+    color: #26364a;
+}
+
+.trades-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background: #f2f6fa;
+    color: #0f4c81;
+}
+
+.trades-icon-link:hover {
+    background: #0f4c81;
+    color: #fff;
+    text-decoration: none;
+}
+
+.trades-actions a {
+    margin: 0 4px;
+    color: #0f4c81;
+}
+
+.trades-page .row_actions {
+    margin-top: 5px;
+}
+
+.trades-page .row_actions a {
+    font-size: 12px;
+}
+
+@media (max-width: 767px) {
+
+    .trades-container {
+        padding: 10px;
+    }
+
+    .trades-header {
+        display: block;
+    }
+
+}
+/* =========================================
+   TRADES CREATE PAGE
+   ========================================= */
+
+.trades-page {
+    padding: 20px;
+}
+
+.trades-header {
+    margin-bottom: 18px;
+}
+
+.trades-header h2 {
+    margin: 0 0 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #26364a;
+}
+
+.trades-header h2 i {
+    color: #0f4c81;
+    margin-right: 8px;
+}
+
+.trades-header p {
+    margin: 0;
+    color: #7b8490;
+    font-size: 13px;
+}
+
+
+/* Main form */
+
+.trades-form-panel {
+    border: 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+    overflow: hidden;
+}
+
+.trades-form-heading {
+    background: #fff !important;
+    border-bottom: 1px solid #e7ebef !important;
+    padding: 15px 20px !important;
+}
+
+.trades-form-heading .panel-title {
+    color: #26364a;
+    font-weight: 600;
+}
+
+.trades-form-heading .panel-title i {
+    color: #0f4c81;
+    margin-right: 7px;
+}
+
+.trades-form-panel .panel-body {
+    padding: 25px 20px;
+}
+
+.trades-form-panel .form-group {
+    margin-bottom: 19px;
+}
+
+.trades-form-panel .control-label {
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.trades-form-panel .form-control {
+    border: 1px solid #d9e0e6;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.trades-form-panel .form-control:focus {
+    border-color: #0f4c81;
+    box-shadow: 0 0 0 2px rgba(15, 76, 129, .07);
+}
+
+
+/* Sidebar */
+
+.trades-card {
+    background: #fff;
+    border: 0 !important;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+}
+
+.trades-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #e7ebef;
+    color: #26364a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.trades-card-header i {
+    color: #0f4c81;
+    margin-right: 6px;
+}
+
+.trades-card-header strong {
+    color: #198754;
+    font-size: 12px;
+}
+
+.trades-card-body {
+    padding: 14px;
+}
+
+.trades-card-body input[type="file"] {
+    width: 100%;
+    font-size: 12px;
+}
+
+.trades-card-body input[type="number"] {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid #d9e0e6;
+    border-radius: 4px;
+    padding: 7px 10px;
+    box-shadow: none;
+}
+
+.trades-card-body input[type="number"]:focus {
+    border-color: #0f4c81;
+    outline: none;
+}
+
+.trades-publish-btn {
+    width: 100%;
+    min-height: 38px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 991px) {
+
+    .trades-page {
+        padding: 15px;
+    }
+
+    .trades-sidebar {
+        margin-top: 15px;
+    }
+
+}
+.trades-image-preview {
+    position: relative;
+    display: inline-block;
+}
+
+.trades-image-preview img {
+    display: block;
+    max-width: 150px;
+    height: auto;
+    border: 1px solid #e1e6eb;
+    padding: 4px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.trades-image-delete {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    background: #dc3545;
+    color: #fff !important;
+    font-size: 11px;
+    z-index: 2;
+}
+
+.trades-image-delete:hover {
+    background: #b02a37;
+    color: #fff !important;
+    text-decoration: none;
+}
