@@ -1,14 +1,14 @@
 <div class="utility-bar" id="utility-bar">
     <div class="wrap">
         <div class="utility-left">
-            <a class="" href="insights.php">Insights</a>
-            <a class="" href="about.php">Who We Are</a>
-            <a class="" href="global.php">Global</a>
+            <a class="" href="{{ url('page/' . posttype_url($about->uri)) }}">{{ ucfirst(strtolower($about->post_type)) }}</a>
+            <a class="" href="{{ url('page/' . posttype_url($global->uri)) }}">{{ ucfirst(strtolower($global->post_type)) }}</a>
+            {{-- <a class="" href="{{ url('page/' . posttype_url($nepal->uri)) }}">{{ ucfirst(strtolower($nepal->post_type)) }}</a> --}}
         </div>
         <div class="utility-right">
-            <a href="nepal.php">Doing Business in Nepal</a>
+            <a href="{{ url('page/' . posttype_url($nepal->uri)) }}">{{ ucfirst(strtolower($nepal->post_type)) }}</a>
             <span class="divider"></span>
-            <a href="careers.php">Careers</a>
+            <a href="{{ route('page.pagedetail', ['parent' => $about->uri, 'uri' => $career->uri]) }}">{{ $career->post_title }}</a>
             <span class="divider"></span>
             <button
                 class="search-trigger"
