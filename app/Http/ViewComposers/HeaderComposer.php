@@ -18,6 +18,7 @@ class HeaderComposer
     public function compose(View $view)
     {
         $view->with('navigations', PostTypeModel::where(['is_menu' => '1'])
+            ->with('posts')
             ->orderBy('ordering', 'asc')
             ->get());
 
