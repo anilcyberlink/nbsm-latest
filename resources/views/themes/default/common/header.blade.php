@@ -73,7 +73,7 @@
                             @if($row->posts->isNotEmpty())
                                 <div class="mega-panel {{ $row->posts->count() > 5 ? 'wide' : '' }}">
                                     @foreach ($row->posts as $post)
-                                        <a href="{{ route('page.pagedetail',['parent' => $post->uri,'uri' => $post->uri]) }}">
+                                        <a href="{{ route('page.pagedetail',['parent' => $row->uri,'uri' => $post->uri]) }}">
                                             {{ $post->post_title }}
                                         </a>
                                     @endforeach

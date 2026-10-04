@@ -56,8 +56,26 @@
                         </label>
 
                         <div class="col-lg-8">
-                            <input type="text" name="post_type" class="form-control" value="{{ $data->post_type }}"
+                            <input type="text" id="post_type" name="post_type" class="form-control" value="{{ $data->post_type }}"
                                 placeholder="Enter post type">
+                        </div>
+                    </div>
+
+                    {{-- URI --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Uri
+                        </label>
+
+                        <div class="col-lg-8">
+
+                            <input type="text" id="uri" name="uri" class="form-control" value="{{ $data->uri }}" readonly>
+
+                            {{-- <div class="nbms-help-text">
+                                <i class="fa fa-lock"></i>
+                                URI cannot be changed.
+                            </div> --}}
+
                         </div>
                     </div>
 
@@ -84,25 +102,6 @@
                                 {{-- @endif --}}
 
                             </select>
-
-                        </div>
-                    </div>
-
-
-                    {{-- URI --}}
-                    <div class="form-group nbms-form-group">
-                        <label class="col-lg-3 control-label">
-                            Uri
-                        </label>
-
-                        <div class="col-lg-8">
-
-                            <input type="text" name="uri" class="form-control" value="{{ $data->uri }}" readonly>
-
-                            <div class="nbms-help-text">
-                                <i class="fa fa-lock"></i>
-                                URI cannot be changed.
-                            </div>
 
                         </div>
                     </div>
@@ -302,5 +301,29 @@
         </div>
 
     </form>
+
+@endsection
+
+@section('scripts')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var post_type;
+
+            $('#post_type').on('keyup', function() {
+
+                post_type = $('#post_type').val();
+
+                post_type = post_type.replace(/[^a-zA-Z0-9 ]+/g, "");
+
+                post_type = post_type.replace(/\s+/g, "-");
+
+                $('#uri').val(post_type);
+
+            });
+
+        });
+    </script>
 
 @endsection

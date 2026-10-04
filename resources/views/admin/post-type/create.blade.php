@@ -59,6 +59,17 @@
                         </div>
                     </div>
 
+                    {{-- URI --}}
+                    <div class="form-group nbms-form-group">
+                        <label class="col-lg-3 control-label">
+                            Uri
+                        </label>
+
+                        <div class="col-lg-8">
+                            <input type="text" id="uri" name="uri" class="form-control"
+                                placeholder="post-type-uri">
+                        </div>
+                    </div>
 
                     {{-- Template --}}
                     <div class="form-group nbms-form-group">
@@ -82,19 +93,6 @@
 
                             </select>
 
-                        </div>
-                    </div>
-
-
-                    {{-- URI --}}
-                    <div class="form-group nbms-form-group">
-                        <label class="col-lg-3 control-label">
-                            Uri
-                        </label>
-
-                        <div class="col-lg-8">
-                            <input type="text" id="uri" name="uri" class="form-control"
-                                placeholder="post-type-uri">
                         </div>
                     </div>
 
