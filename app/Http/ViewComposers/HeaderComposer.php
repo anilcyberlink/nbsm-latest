@@ -26,7 +26,7 @@ class HeaderComposer
             ->orderBy('post_order', 'asc')
             ->get());
 
-        $view->with('career', PostModel::where(['id' => '110'])
+        $view->with('career', PostTypeModel::where(['id' => '23'])
             ->first());
 
         $view->with('contact', PostTypeModel::where(['id' => '20'])

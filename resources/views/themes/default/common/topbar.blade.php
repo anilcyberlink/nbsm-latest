@@ -8,7 +8,7 @@
         <div class="utility-right">
             <a href="{{ url('page/' . posttype_url($nepal->uri)) }}">{{ ucfirst(strtolower($nepal->post_type)) }}</a>
             <span class="divider"></span>
-            <a href="{{ route('page.pagedetail', ['parent' => $about->uri, 'uri' => $career->uri]) }}">{{ $career->post_title }}</a>
+            <a href="{{ url('page/' . posttype_url($career->uri)) }}">{{ ucfirst(strtolower($career->post_type)) }}</a>
             <span class="divider"></span>
             <button
                 class="search-trigger"

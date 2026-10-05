@@ -60,7 +60,7 @@
                 <nav id="primary-navigation">
                     @foreach ($navigations as $row)
                         <div class="nav-item">
-                            <a class="nav-link {{ $row->posts->isNotEmpty() ? 'featured' : '' }}"
+                            <a class="nav-link featured"
                                 href="{{ url('page/' . posttype_url($row->uri)) }}">
                                 {{ $row->post_type }}
                                 @if($row->posts->isNotEmpty())
