@@ -1026,6 +1026,10 @@ body.search-modal-open {
     padding: 110px 0;
 }
 
+.section-home {
+    padding: 10px 0 70px;
+}
+
 .section-head {
     max-width: 660px;
     margin-bottom: 56px;

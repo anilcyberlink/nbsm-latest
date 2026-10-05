@@ -42,7 +42,7 @@
     </div>
 </section>
 
-<section class="section bg-paper">
+<section class="section-home bg-paper">
     <div class="wrap">
         @foreach ($posts as $row)
             <div class="section-head reveal">
