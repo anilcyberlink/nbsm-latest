@@ -66,7 +66,7 @@ class FrontpageController extends Controller
         $blog = PostModel::where('post_parent', 152)->where('show_in_home', "1")->orderBy('home_order', 'asc')->take(4)->get();
 
         // dd($industry,$industries);
-        return view('themes.default.frontpage', compact('banner','contact','resource','publications','about','service','services','industry','industries','nepal','building','career'));
+        return view('themes.default.frontpage', compact('banner', 'contact', 'resource', 'publications', 'about', 'service', 'services', 'industry', 'industries', 'nepal', 'building', 'career'));
         // return view('themes.default.frontpage',compact('news','publication','banner','resource','service','career','industry','blog'));
 
 
@@ -84,7 +84,7 @@ class FrontpageController extends Controller
             $data['template'] = $data['template'];
         }
         if ($data) {
-            $posts = PostModel::where('post_type', $data->id)
+            $posts = PostModel::with('post_child')->where('post_type', $data->id)
                 ->where('status', 1)
                 ->where('post_parent', 0)
                 ->orderBy('post_order', 'asc')
@@ -99,7 +99,7 @@ class FrontpageController extends Controller
         $members = AssociatedPostModel::where('post_id', '106')->get();
 
         // dd($posts,$data);
-        return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value','contact','members'));
+        return view('themes.default.' . $data['template'] . '', compact('branches', 'data', 'documents', 'posts', 'country', 'industry', 'value', 'contact', 'members'));
     }
 
     // public function pagedetail($uri)
@@ -126,8 +126,165 @@ class FrontpageController extends Controller
         $contact = PostTypeModel::where('id', '20')->first();
 
         // dd($data,$associated_posts,$data_child);
-        return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related','contact'));
+        return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related', 'contact'));
     }
+
+    // SEARCH
+    public function search_suggestion(Request $request)
+    {
+        $q = trim($request->get('q', ''));
+
+        // Only search after 3 characters
+        if (mb_strlen($q) < 3) {
+            return response()->json([
+                'results' => []
+            ]);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Search Post Types
+        |--------------------------------------------------------------------------
+        */
+
+        $postTypes = PostTypeModel::query()
+            ->where(function ($query) use ($q) {
+                $query->where('post_type', 'LIKE', "%{$q}%")
+                    ->orWhere('caption', 'LIKE', "%{$q}%");
+            })
+            ->orderBy('ordering', 'asc')
+            ->limit(5)
+            ->get();
+
+        /*
+        |--------------------------------------------------------------------------
+        | Search Posts
+        |--------------------------------------------------------------------------
+        | Only top-level posts
+        |--------------------------------------------------------------------------
+        */
+
+        $posts = PostModel::with('postType')
+            ->where('post_parent', 0)
+            ->where('status', 1)
+            ->where(function ($query) use ($q) {
+                $query->where('post_title', 'LIKE', "%{$q}%")
+                    ->orWhere('sub_title', 'LIKE', "%{$q}%")
+                    ->orWhere('post_excerpt', 'LIKE', "%{$q}%")
+                    ->orWhere('post_content', 'LIKE', "%{$q}%");
+            })
+            ->orderBy('post_order', 'asc')
+            ->limit(8)
+            ->get();
+
+        /*
+        |--------------------------------------------------------------------------
+        | Format Results
+        |--------------------------------------------------------------------------
+        */
+
+        $results = [];
+
+        // Post Types
+        foreach ($postTypes as $type) {
+            $results[] = [
+                'type' => 'post_type',
+                'title' => $type->post_type,
+                'subtitle' => $type->caption,
+                'url' => $this->getPostTypeUrl($type),
+            ];
+        }
+
+        // Posts
+        foreach ($posts as $post) {
+            $results[] = [
+                'type' => 'post',
+                'title' => $post->post_title,
+                'subtitle' => $post->sub_title,
+                'url' => $this->getPostUrl($post),
+            ];
+        }
+
+        return response()->json([
+            'results' => $results
+        ]);
+    }
+
+
+    public function search(Request $request)
+    {
+        $q = trim($request->get('q', ''));
+
+        $posts = collect();
+        $postTypes = collect();
+
+        if ($q !== '') {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Search Post Types
+            |--------------------------------------------------------------------------
+            */
+
+            $postTypes = PostTypeModel::query()
+                ->where(function ($query) use ($q) {
+                    $query->where('post_type', 'LIKE', "%{$q}%")
+                        ->orWhere('caption', 'LIKE', "%{$q}%")
+                        ->orWhere('content', 'LIKE', "%{$q}%");
+                })
+                ->orderBy('ordering', 'asc')
+                ->get();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Search Posts
+            |--------------------------------------------------------------------------
+            */
+
+            $posts = PostModel::with('postType')
+                ->where('post_parent', 0)
+                ->where('status', 1)
+                ->where(function ($query) use ($q) {
+                    $query->where('post_title', 'LIKE', "%{$q}%")
+                        ->orWhere('sub_title', 'LIKE', "%{$q}%")
+                        ->orWhere('post_excerpt', 'LIKE', "%{$q}%")
+                        ->orWhere('post_content', 'LIKE', "%{$q}%");
+                })
+                ->orderBy('post_order', 'asc')
+                ->paginate(12)
+                ->withQueryString();
+        }
+
+        return view('themes.default.searchresult', compact(
+            'q',
+            'posts',
+            'postTypes'
+        ));
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search URLs
+    |--------------------------------------------------------------------------
+    */
+
+    private function getPostTypeUrl($type)
+    {
+        return url('page/' . posttype_url($type->uri));
+    }
+
+
+    private function getPostUrl($post)
+    {
+        return route('page.pagedetail', [
+            'parent' => $post->postType->uri,
+            'uri' => $post->uri,
+        ]);
+    }
+
+    // SEARCH END
 
     public function pagedetail_child($parenturi, $uri)
     {
@@ -210,10 +367,10 @@ class FrontpageController extends Controller
     {
         $post_category = PostCategoryModel::where('uri', trim($uri))->first();
         if ($post_category->id == 2) {
-            $data =  PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
+            $data = PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
             return view('themes.default.completed', compact('data', 'post_category'));
         } else {
-            $data =  PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
+            $data = PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
             return view('themes.default.ongoing', compact('data', 'post_category'));
         }
     }
@@ -468,27 +625,27 @@ class FrontpageController extends Controller
 
         if ($request->isMethod('post') && $result->success == true) {
             $request->validate([
-                'fname'    => 'required|string',
-                'lname'    => 'required|string',
-                'email'    => 'required|email',
-                'contact'  => 'required',
-                'cname'    => 'nullable|string',
-                'message'  => 'nullable|string',
+                'fname' => 'required|string',
+                'lname' => 'required|string',
+                'email' => 'required|email',
+                'contact' => 'required',
+                'cname' => 'nullable|string',
+                'message' => 'nullable|string',
             ], [
-                'fname.required'   => 'First name is required.',
-                'lname.required'   => 'Last name is required.',
-                'email.required'   => 'Email address is required.',
-                'email.email'      => 'Please enter a valid email address.',
+                'fname.required' => 'First name is required.',
+                'lname.required' => 'Last name is required.',
+                'email.required' => 'Email address is required.',
+                'email.email' => 'Please enter a valid email address.',
                 'contact.required' => 'Contact number is required.',
             ]);
 
             $contact = Contact::create([
                 'first_name' => $request->fname,
-                'last_name'  => $request->lname,
-                'email'      => $request->email,
-                'contact'    => $request->contact,
-                'company'    => $request->cname,
-                'comments'   => $request->message,
+                'last_name' => $request->lname,
+                'email' => $request->email,
+                'contact' => $request->contact,
+                'company' => $request->cname,
+                'comments' => $request->message,
             ]);
 
             return new ContactMail($contact);

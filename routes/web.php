@@ -10,6 +10,11 @@
 |
  */
 Route::get('/', 'FrontendControllers\FrontpageController@index');
+
+Route::get('/search', 'FrontendControllers\FrontpageController@search')->name('search');
+Route::get('/search/suggestions','FrontendControllers\FrontpageController@search_suggestion')->name('search.suggestions');
+
+
 Route::get('/proposal-request/{uri?}', 'FrontendControllers\FrontpageController@proposal_request')->name('proposal-request');
 Route::post('/proposal-request/{uri?}', 'FrontendControllers\FrontpageController@proposal_request')->name('proposal-request');
 Route::post('contact-form', 'FrontendControllers\FrontpageController@contact_form')->name('contact-form');
