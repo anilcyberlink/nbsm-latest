@@ -50,6 +50,7 @@
                         request()->is('admin/blogs*') ||
                         request()->is('admin/our-team*') ||
                         request()->is('admin/about*') ||
+                        request()->is('admin/career*') ||
                         request()->is('admin/terms-and-conditions*') ||
                         request()->is('admin/services*') ||
                         request()->is('admin/insights*') ||
