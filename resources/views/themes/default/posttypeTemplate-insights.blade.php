@@ -44,6 +44,7 @@
                 </div>
             @endforeach
         </div>
+        {!! $posts->links('themes.default.common.pagination') !!}
         <div class="reveal" style="margin-top:50px;padding:24px 0;border-top:1px solid var(--stone);">
             <p style="font-size:14px;color:var(--slate);">Priority themes: Nepal Economy &middot; Tax &middot; Business
                 &amp; Investment &middot; M&amp;A &middot; NFRS/IFRS &middot; Regulatory Updates &middot; Nepal Budget
