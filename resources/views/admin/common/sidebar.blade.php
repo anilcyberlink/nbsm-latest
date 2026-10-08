@@ -45,11 +45,13 @@
                     $managePostsActive =
                         request()->is('type/posttype*') ||
                         request()->is('admin/postcategory*') ||
-                        request()->is('admin/contact-us*') ||
+                        request()->is('admin/contact-us') ||
                         request()->is('admin/legal-documents*') ||
+                        request()->is('admin/the-nbsm-difference*') ||
                         request()->is('admin/blogs*') ||
                         request()->is('admin/our-team*') ||
                         request()->is('admin/about*') ||
+                        request()->is('admin/proof-and-people*') ||
                         request()->is('admin/career*') ||
                         request()->is('admin/terms-and-conditions*') ||
                         request()->is('admin/services*') ||
@@ -105,8 +107,8 @@
 
                                     @if (has_posts($row->id))
                                         <a href="{{ url('admin/' . $row->uri) }}">
-                                        @else
-                                            <a href="{{ url('type/posttype/' . $row->id . '/edit') }}">
+                                    @else
+                                        <a href="{{ url('type/posttype/' . $row->id . '/edit') }}">
                                     @endif
 
                                     <span class="fa fa-arrows-h"></span>
@@ -610,8 +612,8 @@
 
 
 
-            <li class="{{ request()->is('admin/contact*') ? 'active' : '' }}">
-                <a href="{{ url('admin/contact') }}">
+            <li class="{{ request()->is('admin/contact-inquiries') ? 'active' : '' }}">
+                <a href="{{ url('admin/contact-inquiries') }}">
                     <span class="fa fa-phone text-info"></span>
                     <span class="sidebar-title">Contact Inquiries</span>
                 </a>

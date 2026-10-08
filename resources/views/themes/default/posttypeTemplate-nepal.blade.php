@@ -11,7 +11,7 @@
         </div>
         <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->uid }}</span>
         <h1 style="margin-top:16px;">{{ $data->caption }}</h1>
-        <p class="lead">{!! $data->content !!}</p>
+        <div class="lead lead-new">{!! $data->content !!}</div>
     </div>
 </section>
 
@@ -41,7 +41,7 @@
         @endforeach
 
         {!! $posts->links('themes.default.common.pagination') !!}
-        
+
         <div class="nepal-cta reveal">
             <p>Considering Nepal? Talk to NBSM.</p>
             <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-cyan">Start the conversation <svg

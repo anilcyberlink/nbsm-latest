@@ -15,7 +15,7 @@
         </div>
         <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->sub_title }}</span>
         <h1 style="margin-top:16px;">{{ $data->post_title }}</h1>
-        <p class="lead">{!! $data->post_excerpt !!}</p>
+        <div class="lead lead-new">{!! $data->post_excerpt !!}</div>
 
         <div class="header-pills">
             @foreach ($related as $row)

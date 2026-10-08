@@ -95,7 +95,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/vehicle-booking-delete/{id}', 'DashboardController@vehicle_booking_delete')->name('vehicle-booking-delete');
     Route::get('admin/inquiry', 'DashboardController@inquiry')->name('inquiry');
     Route::get('admin/inquiry-delete/{id}', 'DashboardController@inquiry_delete')->name('inquiry-delete');
-    Route::get('admin/contact', 'DashboardController@contact_us')->name('contact');
+    Route::get('admin/contact-inquiries', 'DashboardController@contact_us')->name('contact');
     Route::get('admin/contact-delete/{id}', 'DashboardController@contact_us_delete')->name('contact-delete');
 
     Route::get('admin/admin-user', 'AdminControllers\Members\UserController@admin_user');

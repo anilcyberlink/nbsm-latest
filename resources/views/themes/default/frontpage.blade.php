@@ -74,11 +74,13 @@
                 @foreach ($publications as $index => $item)
                     <div class="if-panel {{ $index === 0 ? 'active' : '' }}" data-panel="{{ $index }}">
                         <div class="if-visual">
-                            <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                            <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice"
+                                xmlns="http://www.w3.org/2000/svg">
                                 @if ($index === 0)
                                     {{-- Visual 1 --}}
                                     <defs>
-                                        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                        <linearGradient id="g1" x1="0" y1="0" x2="1"
+                                            y2="1">
                                             <stop offset="0%" stop-color="#1CA9E1" stop-opacity="0.5" />
                                             <stop offset="100%" stop-color="#0E3F69" stop-opacity="0" />
                                         </linearGradient>
@@ -90,8 +92,9 @@
                                         <line x1="0" y1="240" x2="600" y2="240" />
                                         <line x1="0" y1="320" x2="600" y2="320" />
                                     </g>
-                                    <polyline points="20,320 100,280 180,300 260,220 340,240 420,140 500,170 580,80" fill="none"
-                                        stroke="#1CA9E1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                    <polyline points="20,320 100,280 180,300 260,220 340,240 420,140 500,170 580,80"
+                                        fill="none" stroke="#1CA9E1" stroke-width="4" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                     <circle cx="580" cy="80" r="7" fill="#ffffff" />
                                 @elseif($index === 1)
                                     {{-- Visual 2 --}}
@@ -168,8 +171,30 @@
         </section>
     @endif
 
+    <!-- ============ NBSM DIFFERENCE ============ -->
+    @if ($difference)
+        <section class="section" style="padding-top:90px;padding-bottom:90px;">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="eyebrow on-light">{{ $difference->post_type }}</span>
+                    <h2>{{ $difference->uid }}</h2>
+                    <p>{{ $difference->caption }}</p>
+                </div>
+                <div class="attr-grid reveal">
+                    @foreach ($differences as $row)
+                        <div class="attr-card">
+                            <div class="idx">{{ $loop->iteration }}</div>
+                            <h4>{{ $row->post_title }}</h4>
+                            <p>{{ $row->sub_title }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
     <!-- ============ AT A GLANCE ============ -->
-    <section class="section bg-paper">
+    <section class="section-home bg-paper">
         <div class="wrap">
             <div class="about-grid">
                 <div class="reveal">
@@ -195,7 +220,8 @@
                         <span class="l">Founded</span><span class="n">{{ $setting->year }}</span>
                     </div>
                     <div class="row">
-                        <span class="l">Team of professionals</span><span class="n">{{ $setting->field3 }}</span>
+                        <span class="l">Team of professionals</span><span
+                            class="n">{{ $setting->field3 }}</span>
                     </div>
                     <div class="row">
                         <span class="l">Full-time Chartered Accountants</span><span
@@ -210,18 +236,6 @@
                     </div>
                 </div>
             </div>
-
-            @if ($about && $teams)
-                <div class="partner-note reveal">
-                    <p><strong>Meet our experts.</strong> Experienced partners delivering focused advice and practical
-                        solutions.</p>
-                    <a href="{{ route('page.pagedetail', ['parent' => $about->uri, 'uri' => $teams->uri]) }}"
-                        class="btn btn-line">Meet the team <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M5 12h14M13 6l6 6-6 6" />
-                        </svg></a>
-                </div>
-            @endif
         </div>
     </section>
 
@@ -242,7 +256,7 @@
                             <div class="service-card flagship">
                                 <span class="tag">{{ $row->post_title }}</span>
                                 <h3 style="margin-top: 12px">{{ $row->sub_title }}</h3>
-                                {{-- <p>{!! $row->post_excerpt !!}</p> --}}
+                                <p>{!! $row->post_excerpt !!}</p>
                                 <a class="more"
                                     href="{{ route('page.pagedetail', ['parent' => $service->uri, 'uri' => $row->uri]) }}">Learn
                                     more
@@ -253,7 +267,8 @@
                         @else
                             <div class="service-card">
                                 <div class="icon-badge">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.6">
                                         <path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z" />
                                         <path d="M9 12l2 2 4-4" />
                                     </svg>
@@ -280,55 +295,10 @@
         </div>
     </section>
 
-    <!-- ============ GLOBAL REACH TEASER ============ -->
-    <section class="section vision2030" id="global" style="background: radial-gradient(
-                120% 140% at 100% 0%,#124d80 0%, var(--ink) 45%, #082a48 100% ); color: #fff;">
-
-        <div class="wrap">
-            <div class="section-head reveal">
-                @if($nepal)
-                    <span class="eyebrow">{{ $nepal->post_type }}</span>
-                    <h2 style="color: #fff">{{ $nepal->uid }}</h2>
-                    <p style="color: rgba(255, 255, 255, 0.65)">
-                        {{ $nepal->caption }}
-                    </p>
-                @endif
-            </div>
-            <div class="journeys reveal">
-                @foreach ($building as $row)
-                    <div class="journey">
-                        <div class="idx">{{ $row->post_title }}</div>
-                        <h4>{{ $row->sub_title }}</h4>
-                        <p>
-                            {!! $row->post_excerpt !!}
-                        </p>
-                    </div>
-                @endforeach
-            </div>
-            <div class="moore-badge reveal">
-                <img class="moore-logo" src="{{asset('themes-assets/assets/img/moore-logo-ondark.png')}}"
-                    alt="Moore Global" />
-                <span class="moore-divider"></span>
-                <span class="n">{{ $setting->network }}</span>
-                <span class="l">countries in the Moore Global network.</span>
-            </div>
-            <div style="margin-top: 32px" class="reveal cta-row">
-                <a href="{{ url('page/' . posttype_url($nepal->uri)) }}" class="btn btn-cyan">Explore our global network
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg></a>
-                <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-cyan">Start the conversation
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg></a>
-            </div>
-        </div>
-    </section>
-
     <!-- ============ INDUSTRIES TEASER ============ -->
-    <section class="section bg-paper" id="industries">
+    <section class="section-home bg-paper" id="industries">
         <div class="wrap">
-            @if($industry)
+            @if ($industry)
                 <div class="section-head reveal">
                     <span class="eyebrow on-light">{{ $industry->post_type }}</span>
                     <h2>{{ $industry->uid }}</h2>
@@ -356,7 +326,118 @@
         </div>
     </section>
 
-    @if($contact)
+    <!-- ============ GLOBAL REACH TEASER ============ -->
+    <section class="section vision2030" id="global"
+        style="background: radial-gradient(
+                120% 140% at 100% 0%,#124d80 0%, var(--ink) 45%, #082a48 100% ); color: #fff;">
+
+        <div class="wrap">
+            <div class="section-head reveal">
+                @if ($global)
+                    <span class="eyebrow">{{ $global->post_type }}</span>
+                    <h2 style="color: #fff">{{ $global->uid }}</h2>
+                    <p style="color: rgba(255, 255, 255, 0.65)">
+                        {{ $global->caption }}
+                    </p>
+                @endif
+            </div>
+            <div class="journeys reveal">
+                @foreach ($globals as $row)
+                    <div class="journey">
+                        <div class="idx">{{ $row->post_title }}</div>
+                        <h4>{{ $row->sub_title }}</h4>
+                        <p>
+                            {!! $row->post_excerpt !!}
+                        </p>
+                    </div>
+                @endforeach
+            </div>
+            <div class="moore-badge reveal">
+                <img class="moore-logo" src="{{ asset('themes-assets/assets/img/moore-logo-ondark.png') }}"
+                    alt="Moore Global" />
+                <span class="moore-divider"></span>
+                <span class="n">{{ $setting->network }}</span>
+                <span class="l">countries in the Moore Global network.</span>
+            </div>
+            <div style="margin-top: 32px" class="reveal cta-row">
+                <a href="{{ url('page/' . posttype_url($global->uri)) }}" class="btn btn-cyan">Explore our global network
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ DOING BUSINESS IN NEPAL TEASER ============ -->
+    @if ($nepal)
+        <section class="section bg-paper" id="nepal">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="eyebrow on-light">{{ $nepal->post_type }}</span>
+                    <h2>{{ $nepal->uid }}</h2>
+                    <p>{{ $nepal->caption }}</p>
+                </div>
+                <div class="nepal-cta reveal">
+                    <p>Considering Nepal? Talk to NBSM.</p>
+                    <a href="{{ url('page/' . posttype_url($nepal->uri)) }}" class="btn btn-cyan">Start the conversation
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
+    @if ($proof)
+        <section class="section-home">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="eyebrow on-light">{{ $proof->post_type }} </span>
+                    <h2>{{ $proof->uid }}</h2>
+                    <p>{{ $proof->caption }}</p>
+                </div>
+                <div class="case-grid reveal">
+                    @foreach ($proofs as $row)
+                        <div class="case-card"><span class="tag">{{ $row->sub_title }}</span>
+                            <h4>{{ $row->post_title }}</h4>
+                            <div class="steps">
+                                <span>Challenge</span><span>Complexity</span><span>Approach</span><span>Outcome</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                @if ($about && $teams)
+                    <div class="partner-note reveal">
+                        <p><strong>Meet our experts.</strong> Experienced partners delivering focused advice and practical
+                            solutions.</p>
+                        <a href="{{ route('page.pagedetail', ['parent' => $about->uri, 'uri' => $teams->uri]) }}"
+                            class="btn btn-line">Meet the team <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg></a>
+                    </div>
+                @endif
+            </div>
+        </section>
+    @endif
+
+    <!-- ============ CAREERS BANNER ============ -->
+    @if ($career)
+        <section class="career-banner" id="careers">
+            <div class="wrap">
+                <h2>Take your career to the next level with NBSM.</h2>
+                <a href="{{ url('page/' . posttype_url($career->uri)) }}" class="btn btn-ghost">Explore careers
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></a>
+            </div>
+        </section>
+    @endif
+
+    @if ($contact)
         <!-- ============ FINAL CTA ============ -->
         <section class="final-cta">
             <div class="wrap">
@@ -399,8 +480,8 @@
                             <p>{{ $setting->website2 }} &middot; {{ $setting->field1 }}</p>
                         </div>
                     </div>
-                    <div class="reveal" style="
-                                          display: flex;
+                    <div class="reveal"
+                        style=" display: flex;
                                           flex-direction: column;
                                           justify-content: center;
                                           gap: 20px;
@@ -415,19 +496,6 @@
                             </svg></a>
                     </div>
                 </div>
-            </div>
-        </section>
-    @endif
-
-    <!-- ============ CAREERS BANNER ============ -->
-    @if($career)
-        <section class="career-banner" id="careers">
-            <div class="wrap">
-                <h2>Take your career to the next level with NBSM.</h2>
-                <a href="{{ url('page/' . posttype_url($career->uri)) }}" class="btn btn-ghost">Explore careers
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg></a>
             </div>
         </section>
     @endif
