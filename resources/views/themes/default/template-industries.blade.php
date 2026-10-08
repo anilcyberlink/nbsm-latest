@@ -14,7 +14,7 @@
             </div>
             <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->sub_title }}</span>
             <h1 style="margin-top:16px;">{{ $data->post_title }}</h1>
-            <p class="lead">{!! $data->post_excerpt !!}</p>
+            <div class="lead lead-new">{!! $data->post_excerpt !!}</div>
 
             <div class="header-pills">
                 @foreach ($related as $row)
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <p style="font-size:16px;color:var(--slate);">{!! $data->post_content !!}</p>
-                    
+
                     <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-line" style="margin-top:28px;">Talk to our banking team <svg
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M13 6l6 6-6 6" />

@@ -13,6 +13,6 @@ class PostTypeModel extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Posts\PostModel','post_type')->where('post_parent', 0);
+        return $this->hasMany('App\Models\Posts\PostModel','post_type')->where('post_parent', 0)->orderBy('post_order', 'asc');
     }
 }

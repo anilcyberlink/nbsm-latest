@@ -60,8 +60,8 @@ function loop_category($id)
 
 function has_posts($post_type)
 {
-    $data = PostModel::where(['post_type' => $post_type, 'post_parent' => '0', 'status' => 1])->orderBy('post_order', 'asc')->get();
-    if ($data->count() > 1) {
+    $data = PostModel::where(['post_type' => $post_type, 'post_parent' => '0', 'status' => '1'])->orderBy('post_order', 'asc')->get();
+    if ($data->count() > 0) {
         return $data;
     }
     return false;

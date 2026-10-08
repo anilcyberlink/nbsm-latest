@@ -897,6 +897,7 @@ body.search-modal-open {
     height: 110px;
     display: flex;
     align-items: flex-end;
+    z-index: 1;
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 55%);
     mask-image: linear-gradient(180deg, transparent 0%, black 55%);
 }
@@ -2023,7 +2024,20 @@ section[id] {
     color: rgba(255, 255, 255, 0.72);
     font-size: 16px;
 }
-
+.page-header .lead-new {
+    margin-top: 16px;
+    max-width: 60ch;
+    color: #fff !important;
+    font-size: 16px;
+    line-height: 1.7;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #fff !important;
+}
+.page-header .lead-new * {
+    color: #fff !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #fff !important;
+}
 .header-pills {
     display: flex;
     gap: 10px;

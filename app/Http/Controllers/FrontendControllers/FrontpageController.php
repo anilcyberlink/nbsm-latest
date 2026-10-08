@@ -47,21 +47,28 @@ class FrontpageController extends Controller
     public function index(Request $request)
     {
         $banner = BannerModel::where('status', 1)->first();
-        $contact = PostTypeModel::where('id', '20')->first();
-        $resource = PostTypeModel::where('id', 19)->first();
-        $publications = getPosttypePostPostchildShowInHomeByIdWithStatus($resource->id);
-        $about = PostTypeModel::where('id', 17)->first();
-        $teams = PostModel::where('post_type', $about->id)->where('id','106')->first();
-        $service = PostTypeModel::where('id', 16)->first();
-        $services = PostModel::where('post_type', $service->id)->take(6)->get();
-        $industry = PostTypeModel::where('id', 15)->first();
-        $industries = PostModel::where('post_type', $industry->id)->take(9)->get();
-        $nepal = PostTypeModel::where('id', 22)->first();
-        $building = PostModel::where('post_type', $nepal->id)->take(3)->get();
-        $career = PostTypeModel::where('id', 23)->first();
+        $postTypes = PostTypeModel::whereIn('id', [15, 16, 17, 18, 19, 20, 22, 23, 24, 25])->get()->keyBy('id');
+        $contact = $postTypes->get(20);
+        $resource = $postTypes->get(19);
+        $publications = $resource ? getPosttypePostPostchildShowInHomeByIdWithStatus($resource->id) : collect();
+        $about = $postTypes->get(17);
+        $teams = $about ? PostModel::where('post_type', $about->id)->where('id', 106)->first() : null;
+        $service = $postTypes->get(16);
+        $services = $service ? PostModel::where('post_type', $service->id)->take(6)->get() : collect();
+        $industry = $postTypes->get(15);
+        $industries = $industry ? PostModel::where('post_type', $industry->id)->take(9)->get() : collect();
+        $career = $postTypes->get(23);
+        $difference = $postTypes->get(24);
+        $differences = $difference ? PostModel::where('post_type', $difference->id)->take(5)->get() : collect();
+        $global = $postTypes->get(18);
+        $globals = $global ? PostModel::where('post_type', $global->id)->take(5)->get() : collect();
+        $nepal = $postTypes->get(22);
+        $building = $nepal ? PostModel::where('post_type', $nepal->id)->take(3)->get() : collect();
+        $proof = $postTypes->get(25);
+        $proofs = $proof ? PostModel::where('post_type', $proof->id)->take(3)->get() : collect();
 
-        // dd($industry,$industries);
-        return view('themes.default.frontpage', compact('banner', 'contact', 'resource', 'publications', 'about', 'teams','service', 'services', 'industry', 'industries', 'nepal', 'building', 'career'));
+        
+        return view('themes.default.frontpage', compact('banner', 'contact', 'resource', 'publications', 'about', 'teams', 'service', 'services', 'industry', 'industries', 'nepal', 'building', 'career', 'difference', 'differences', 'global', 'globals', 'proof', 'proofs'));
     }
 
     public function posttype($uri)

@@ -10,7 +10,7 @@
         <div class="breadcrumb"><a href="{{ url('/') }}">Home</a> &nbsp;/&nbsp; <span>{{ $data->post_type }}</span></div>
         <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->uid }}</span>
         <h1 style="margin-top:16px;">{{ $data->caption }}</h1>
-        <p class="lead">{!! $data->content !!}</p>
+        <div class="lead lead-new">{!! $data->content !!}</div>
     </div>
 </section>
 <section class="section">
