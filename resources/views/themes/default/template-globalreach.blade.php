@@ -32,7 +32,7 @@
             @foreach($data_child as $child)
                 <div class="journey card-light">
                     <div class="idx">{{ $child->post_title }}</div>
-                    <h4>{!! $child->post_excerpt !!}</h4>
+                    <h4>{!! $child->subtitle !!}</h4>
                     <p>{!! $child->post_content !!}</p>
                 </div>
             @endforeach
