@@ -57,8 +57,10 @@
                         request()->is('admin/services*') ||
                         request()->is('admin/insights*') ||
                         request()->is('admin/industries*') ||
+                        request()->is('admin/global*') ||
+                        request()->is('admin/who-we-are*') ||
                         request()->is('admin/international*') ||
-                        request()->is('admin/doing-business-in-nepal') ||
+                        request()->is('admin/doing-business-in-nepal*') ||
                         request()->is('admin/resources*');
                 @endphp
 

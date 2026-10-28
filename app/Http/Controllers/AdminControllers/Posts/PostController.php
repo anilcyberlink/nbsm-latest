@@ -475,6 +475,8 @@ class PostController extends Controller
         $data->project_status = $request->project_status;
         $isChecked = $request->has('show_in_home');
         $data->show_in_home = ($isChecked) ? '1' : '0';
+        $isfooterChecked = $request->has('is_footer');
+        $data->is_footer = ($isfooterChecked) ? '1' : '0';
         $data->home_order = $request->home_order;
         if ($data->save()) {
             if ($isChecked) {

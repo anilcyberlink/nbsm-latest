@@ -44,6 +44,8 @@ class HeaderComposer
         $view->with('global', PostTypeModel::where(['id' => '18'])
             ->first());
 
+        $view->with('gmn', PostModel::where('id','206')
+            ->first());
 
     }
 

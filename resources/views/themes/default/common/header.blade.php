@@ -77,6 +77,11 @@
                                             {{ $post->post_title }}
                                         </a>
                                     @endforeach
+                                    @if($loop->iteration == 5)
+                                        <a href="{{ url('page/' . posttype_url($nepal->uri)) }}">
+                                            {{ $nepal->post_type }}
+                                        </a>
+                                    @endif
                                 </div>
                             @endif
                         </div>

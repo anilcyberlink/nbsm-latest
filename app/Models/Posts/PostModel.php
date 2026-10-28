@@ -37,6 +37,7 @@ class PostModel extends Model
         'post_tags',
         'project_status',
         'status',
+        'is_footer',
         'published',
         'is_active',
         'is_draft',

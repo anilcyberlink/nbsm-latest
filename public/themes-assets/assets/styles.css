@@ -2319,8 +2319,39 @@ section[id] {
     flex: 1;
 }
 
+.res-publication-excerpt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--slate);
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+/* Normalize formatting coming from TinyMCE */
+.res-publication-excerpt p {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0 0 8px;
+}
+
+.res-publication-excerpt p:last-child {
+    margin-bottom: 0;
+}
+
+.res-publication-excerpt span {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
 .res-readmore {
-    margin-top: 18px;
+    margin-top: auto;
+    padding-top: 24px;
     font-size: 13px;
     font-weight: 700;
     color: var(--harbor);
@@ -2328,6 +2359,7 @@ section[id] {
     align-items: center;
     gap: 6px;
     align-self: flex-start;
+    cursor: pointer;
 }
 
 .res-readmore svg {
