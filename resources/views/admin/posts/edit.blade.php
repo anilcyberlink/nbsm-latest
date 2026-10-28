@@ -620,6 +620,29 @@
 
                     </div>
 
+                    <div class="sid_ mb10 nbms-post-card">
+
+                        <div class="nbms-post-card-body">
+
+                            <label class="nbms-checkbox">
+
+                                <input
+                                    type="checkbox"
+                                    name="is_footer"
+                                    value="{{ $data->is_footer }}"
+                                    {{ ($data->is_footer == 1) ? 'checked' : '' }}
+                                />
+
+                                <span>
+                                    Show in footer
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
 
                     {{-- Homepage Order --}}
                     <div class="sid_ mb10 nbms-post-card">

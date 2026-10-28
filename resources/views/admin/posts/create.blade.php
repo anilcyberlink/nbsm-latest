@@ -461,6 +461,25 @@
 
                         </div>
 
+                        {{-- Show in Home --}}
+                        <div class="sid_ mb10 nbms-post-card">
+
+                            <div class="nbms-post-card-body">
+
+                                <label class="nbms-checkbox">
+
+                                    <input type="checkbox" name="is_footer" value="1" />
+
+                                    <span>
+                                        Show in footer
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
 
                         {{-- File --}}
                         <div class="sid_ mb10 nbms-post-card">

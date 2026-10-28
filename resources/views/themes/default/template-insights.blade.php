@@ -29,7 +29,7 @@
             <div class="res-panel reveal">
                 @foreach($data_child as $child)
                     <div class="res-item reveal" id="nepal-budget-2083-84">
-                        <div class="card-visual" style="height:110px; overflow:hidden;">
+                        <div class="card-visual" style="height:120px; overflow:hidden;">
                             <img
                                 src="{{ $child->page_thumbnail ? asset('uploads/medium/'.$child->page_thumbnail) : asset('assets/img/ese.png') }}"
                                 alt="{{ $child->post_title }}"
@@ -40,7 +40,9 @@
                             <span class="res-tag">{{ $data->post_title }}</span>
                             <h3 class="res-title">{{ $child->post_title }}</h3>
                             <p class="res-date">{{ \Carbon\Carbon::parse($row->created_at)->format('d F Y') }}</p>
-                            <p class="res-excerpt">{{ $child->sub_title }}</p>
+                            <div class="res-publication-excerpt">
+                                {!! $child->post_excerpt !!}
+                            </div>
                             <span class="res-readmore">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M5 12h14M13 6l6 6-6 6" />

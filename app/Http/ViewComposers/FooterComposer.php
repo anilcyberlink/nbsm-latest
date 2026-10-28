@@ -20,13 +20,23 @@ class FooterComposer{
 			->orderBy('ordering','asc')
 			->get());
 
+		$view->with('who',PostTypeModel::where(['id'=>'17'])->first());
+
+		$view->with('company',PostModel::where(['post_type'=>'17','post_parent'=>'0','is_footer'=>'1'])->get());
+
 		$view->with('service',PostTypeModel::where(['id'=>'16'])->first());
 
-		$view->with('services',PostModel::where(['post_type'=>'16','post_parent'=>'0'])->get());
+		$view->with('services',PostModel::where(['post_type'=>'16','post_parent'=>'0','is_footer'=>'1'])->get());
 
 		$view->with('industry',PostTypeModel::where(['id'=>'15'])->first());
 
-		$view->with('industries',PostModel::where(['post_type'=>'15','post_parent'=>'0'])->take(6)->get());
+		$view->with('industries',PostModel::where(['post_type'=>'15','post_parent'=>'0','is_footer'=>'1'])->take(6)->get());
+
+        $view->with('career', PostTypeModel::where(['id' => '23'])
+            ->first());
+            
+        $view->with('nepal', PostTypeModel::where(['id' => '22'])
+            ->first());
 
 		$view->with('quick_links',PostModel::where(['post_category'=>'2'])
 				->get());

@@ -3,21 +3,23 @@
         <div class="footer-top">
             <div>
                 <img
-                    src="{{ asset('themes-assets/assets/img/logo-ondark.png')}}"
+                    src="{{ asset('themes-assets/assets/img/moore-logo-ondark.png')}}"
                     alt="{{ $setting->site_name }}"
-                    style="width:150px;height:auto;display:block;margin:0 0 12px 0;"
+                    style="width:150px;height:auto;display:block;margin:0 0 10px 0;"
                 />
-                <h5>{{ $setting->site_name }}</h5>
-                {{-- <p style="font-size:13.5px;color:rgba(255,255,255,.55);margin-top:-8px;">Chartered Accountants</p> --}}
+                {{-- <h5>{{ $setting->site_name }}</h5> --}}
+                <p style="font-family: 'Montserrat', sans-serif; font-size:16px;color:#20A9E0;margin-top:-6px;">Member Of Moore Global Network</p>
+
             </div>
             <div>
-                <h5>Company</h5>
+                <h5>Who We Are</h5>
                 <ul>
-                    @foreach ($footer as $nav)
+                    @foreach ($company as $nav)
                         <li>
-                            <a href="{{ url('page/' . posttype_url($nav->uri)) }}">{{ $nav->post_type }}</a>
+                            <a href="{{ route('page.pagedetail', ['parent' => $who->uri, 'uri' => $nav->uri]) }}">{{ \Illuminate\Support\Str::title(\Illuminate\Support\Str::lower($nav->post_title)) }}</a>
                         </li>
                     @endforeach
+                    <li><a href="{{ url('page/' . posttype_url($career->uri)) }}">{{ ucwords(strtolower($career->post_type)) }}</a></li>
                 </ul>
             </div>
             <div>
@@ -25,19 +27,24 @@
                 <ul>
                     @foreach ($services as $row)
                         <li>
-                            <a href="{{ route('page.pagedetail', ['parent' => $service->uri, 'uri' => $row->uri]) }}">{{ $row->post_title }}</a>
+                            <a href="{{ route('page.pagedetail', ['parent' => $service->uri, 'uri' => $row->uri]) }}">{{ \Illuminate\Support\Str::title(\Illuminate\Support\Str::lower($row->post_title)) }}</a>
                         </li>
                     @endforeach
                 </ul>
             </div>
             <div>
-                <h5>Global</h5>
+                <h5>Industries</h5>
                 <ul>
                     @foreach ($industries as $row)
                         <li>
                             <a href="{{ route('page.pagedetail', ['parent' => $industry->uri, 'uri' => $row->uri]) }}">{{ $row->post_title }}</a>
                         </li>
                     @endforeach
+                    <li>
+                        <a href="{{ url('page/' . posttype_url($nepal->uri)) }}">
+                            {{ $nepal->post_type }}
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div>

@@ -3,12 +3,15 @@
         <div class="utility-left">
             <a class="" href="{{ url('page/' . posttype_url($insights->uri)) }}">{{ ucwords(strtolower($insights->post_type)) }}</a>
             <a class="" href="{{ url('page/' . posttype_url($about->uri)) }}">{{ ucwords(strtolower($about->post_type)) }}</a>
-            <a class="" href="{{ url('page/' . posttype_url($global->uri)) }}">{{ ucwords(strtolower($global->post_type)) }}</a>
+            <a href="{{ url('page/' . posttype_url($career->uri)) }}">{{ ucwords(strtolower($career->post_type)) }}</a>
+            {{-- <a class="" href="{{ url('page/' . posttype_url($global->uri)) }}">{{ ucwords(strtolower($global->post_type)) }}</a> --}}
         </div>
         <div class="utility-right">
             <a href="{{ url('page/' . posttype_url($nepal->uri)) }}">{{ ucwords(strtolower($nepal->post_type)) }}</a>
             <span class="divider"></span>
-            <a href="{{ url('page/' . posttype_url($career->uri)) }}">{{ ucwords(strtolower($career->post_type)) }}</a>
+            <a href="{{ route('page.pagedetail',['parent' => $global->uri,'uri' => $gmn->uri]) }}">
+                {{ $gmn->post_title }}
+            </a>
             <span class="divider"></span>
             <button
                 class="search-trigger"

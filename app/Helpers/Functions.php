@@ -475,8 +475,9 @@ function getPosttypePostPostchildShowInHomeByIdWithStatus($id)
 {
 
     $data = PostModel::where(['post_type' => $id, 'show_in_home' => '1', 'status' => '1'])->where('post_parent', '!=', '0')
-        ->orderByRaw('home_order IS NULL')
-        ->orderBy('home_order', 'asc')
+        ->orderBy('created_at', 'desc')
+        // ->orderByRaw('home_order IS NULL')
+        // ->orderBy('home_order', 'desc')
         ->get();
     return $data;
 }

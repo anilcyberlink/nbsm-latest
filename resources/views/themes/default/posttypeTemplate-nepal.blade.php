@@ -35,6 +35,10 @@
                         <p style="margin-top:14px;font-size:15px;color:var(--slate);">
                             {!! $row->post_content !!}
                         </p>
+                        <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-line" style="margin-top:28px;">View Detail<svg
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg></a>
                     </div>
                 </div>
             </div>

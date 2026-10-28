@@ -67,7 +67,7 @@ class FrontpageController extends Controller
         $proof = $postTypes->get(25);
         $proofs = $proof ? PostModel::where('post_type', $proof->id)->take(3)->get() : collect();
 
-        
+
         return view('themes.default.frontpage', compact('banner', 'contact', 'resource', 'publications', 'about', 'teams', 'service', 'services', 'industry', 'industries', 'nepal', 'building', 'career', 'difference', 'differences', 'global', 'globals', 'proof', 'proofs'));
     }
 
@@ -86,7 +86,7 @@ class FrontpageController extends Controller
             $posts = PostModel::with('post_child')->where('post_type', $data->id)
                 ->where('status', 1)
                 ->where('post_parent', 0)
-                ->orderBy('post_order', 'asc')
+                ->orderBy('post_order', 'desc')
                 ->paginate(12);
         }
         $value = $uri;
@@ -121,7 +121,7 @@ class FrontpageController extends Controller
         $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->orderBy('ordering', 'asc')->paginate(12);
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
         $pos_type = PostTypeModel::where('id', $data->post_type)->first();
-        $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', 0)->get();
+        $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', 0)->orderBy('post_order', 'desc')->get();
         $contact = PostTypeModel::where('id', '20')->first();
 
         // dd($data,$associated_posts,$data_child);

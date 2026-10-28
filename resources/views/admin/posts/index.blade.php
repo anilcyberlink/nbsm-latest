@@ -60,8 +60,8 @@
                                 <tr class="bg-light">
                                     <th class="text-center"> SN </th>
                                     <th>Post Name</th>
-                                    <!-- <th class="text-center">GP</th>    -->
                                     <th class="text-center">Status</th>
+                                    <th class="text-center">Is Footer?</th>
                                     @if (Request::segment(2) == 'resources' && Request::segment(3) != '')
                                         <th class="text-center">Show_in_home</th>
                                     @endif
@@ -104,6 +104,9 @@
                                             <input class="CheckStatus" type="checkbox" name="status"
                                                 data-rowid="{{ $row->id }}"
                                                 {{ $row->status == 1 ? 'checked' : '' }} />
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $row->is_footer == 1 ? 'Yes' : 'No' }}
                                         </td>
                                         @if (Request::segment(2) == 'resources' && Request::segment(3) != '')
                                             <td class="text-center">
