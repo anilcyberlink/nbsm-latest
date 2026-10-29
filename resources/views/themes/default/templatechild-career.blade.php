@@ -7,6 +7,9 @@
 
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
+        <div class="page-header-bg">
+            <img src="{{ asset('themes-assets/images/nbsm-default.jpg') }}" alt="NBSM Insights Banner">
+        </div>
         <div class="wrap">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}">HOME</a> &nbsp;/&nbsp; <a
@@ -30,7 +33,7 @@
             <div class="outsource-content-grid">
                 {{-- Image --}}
                 <div class="outsource-image">
-                    <img src="{{$data->page_thumbnail ? asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) : asset('themes-assets/images/nbsm-default.jpg') }}"
+                    <img src="{{ $data->page_thumbnail ? asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) : asset('themes-assets/images/nbsm-default.jpg') }}"
                         alt="{{ $data->post_title }}" loading="lazy">
                 </div>
 

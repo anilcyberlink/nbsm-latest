@@ -7,6 +7,9 @@
 
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
+        <div class="page-header-bg">
+            <img src="{{ asset('themes-assets/images/nbsm-default.jpg') }}" alt="NBSM Insights Banner">
+        </div>
         <div class="wrap">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}">HOME</a> &nbsp;/&nbsp; <a
@@ -62,11 +65,11 @@
                     <div>
                         <p style="font-size:16px;color:var(--slate);">{!! $data->post_excerpt !!}</p>
 
-                        @if($data_child->count() > 0)
+                        @if ($data_child->count() > 0)
                             <h3>What&rsquo;s included</h3>
                             <div class="subservice-grid">
 
-                                @foreach($data_child as $child)
+                                @foreach ($data_child as $child)
                                     <div class="subservice-card">
                                         <h5>{{ $child->post_title }}</h5>
                                         <p>{!! $child->post_excerpt !!}</p>

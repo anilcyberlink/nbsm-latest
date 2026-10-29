@@ -6,6 +6,9 @@
 
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
+        <div class="page-header-bg">
+            <img src="{{ asset('themes-assets/images/nbsm-default.jpg') }}" alt="NBSM Insights Banner">
+        </div>
         <div class="wrap">
             <div class="breadcrumb"><a href="{{ url('/') }}">Home</a> &nbsp;/&nbsp; <span>{{ $data->post_type }}</span>
             </div>
@@ -83,7 +86,7 @@
             </div>
         </div>
 
-        @if(!empty($setting->google_map2))
+        @if (!empty($setting->google_map2))
             <div class="wrap contact-map">
                 <div class="map-wrapper">
                     {!! $setting->google_map2 !!}
@@ -95,9 +98,11 @@
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('SITE_KEY') }}"></script>
 
     <script>
-        grecaptcha.ready(function () {
+        grecaptcha.ready(function() {
             function executeRecaptcha() {
-                grecaptcha.execute('<?php echo env("SITE_KEY"); ?>', { action: 'homepage' }).then(function (token) {
+                grecaptcha.execute('<?php echo env('SITE_KEY'); ?>', {
+                    action: 'homepage'
+                }).then(function(token) {
                     document.getElementById('g_recaptcha_response').value = token;
                 });
             }

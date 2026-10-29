@@ -7,6 +7,9 @@
 
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
+        <div class="page-header-bg">
+            <img src="{{ asset('themes-assets/images/nbsm-default.jpg') }}" alt="NBSM Insights Banner">
+        </div>
         <div class="wrap">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}">HOME</a> &nbsp;/&nbsp; <a
@@ -30,7 +33,7 @@
             <div class="outsource-content-grid">
                 {{-- Image --}}
                 <div class="outsource-image">
-                    <img src="{{$data->page_thumbnail ? asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) : asset('themes-assets/images/nbsm-default.jpg') }}"
+                    <img src="{{ $data->page_thumbnail ? asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) : asset('themes-assets/images/nbsm-default.jpg') }}"
                         alt="{{ $data->post_title }}" loading="lazy">
                 </div>
 
@@ -98,7 +101,8 @@
     <section class="career-banner">
         <div class="wrap">
             <h2>Considering Nepal? Talk to NBSM.</h2>
-            <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-ghost">Start the conversation<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-ghost">Start the conversation<svg
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg></a>
         </div>
