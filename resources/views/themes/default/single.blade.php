@@ -13,9 +13,8 @@
                     href="{{ url('page/' . posttype_url($pos_type->uri)) }}">{{ $pos_type->post_type }}</a>
                 &nbsp;/&nbsp; <span>{{ $data->post_title }}</span>
             </div>
-            <span class="eyebrow hero-eyebrow" style="color:var(--cyan)">{{ $data->sub_title }}</span>
+            <span class="eyebrow hero-eyebrow" style="color:var(--cyan)"></span>
             <h1 style="margin-top:16px;">{{ $data->post_title }}</h1>
-            <p class="lead">{!! $data->post_excerpt !!}</p>
 
             <div class="header-pills">
                 @foreach ($related as $row)
@@ -26,41 +25,74 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="outsource-content-section">
         <div class="wrap">
-            <div class="res-panel reveal">
-                @foreach($data_child as $child)
-                    <div class="res-item reveal" id="nepal-budget-2083-84">
-                        <div class="card-visual" style="height:110px; overflow:hidden;">
-                            <img src="{{ $child->page_thumbnail ? asset('uploads/medium/' . $child->page_thumbnail) : asset('assets/img/ese.png') }}"
-                                alt="{{ $child->post_title }}"
-                                style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div class="outsource-content-grid">
+                {{-- Image --}}
+                <div class="outsource-image">
+                    <img src="{{$data->page_thumbnail ? asset(env('PUBLIC_PATH') . 'uploads/medium/' . $data->page_thumbnail) : asset('themes-assets/images/nbsm-default.jpg') }}"
+                        alt="{{ $data->post_title }}" loading="lazy">
+                </div>
+
+                {{-- Content --}}
+                <div class="outsource-content">
+                    @if (!empty($data->sub_title))
+                        <span class="outsource-label">
+                            {{ $data->sub_title }}
+                        </span>
+                    @endif
+
+                    <h2>{{ $data->post_title }}</h2>
+
+                    {{-- Excerpt --}}
+                    @if (!empty($data->post_excerpt))
+                        <div class="outsource-excerpt">
+                            {!! $data->post_excerpt !!}
                         </div>
-                        <div class="card-body res-item-body">
-                            <span class="res-tag">{{ $data->post_title }}</span>
-                            <h3 class="res-title">{{ $child->post_title }}</h3>
-                            <p class="res-date">{{ \Carbon\Carbon::parse($row->created_at)->format('d F Y') }}</p>
-                            <p class="res-excerpt">{{ $child->sub_title }}</p>
-                            <span class="res-readmore">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M5 12h14M13 6l6 6-6 6" />
-                                </svg></span>
+                    @endif
+
+                    {{-- Main Content --}}
+                    @if (!empty($data->post_content))
+                        <div class="outsource-description">
+                            {!! $data->post_content !!}
                         </div>
-                    </div>
-                @endforeach
+                    @endif
+
+                    {{-- PDF Download --}}
+                    @if (!empty($data->icon))
+                        <a href="{{ asset(env('PUBLIC_PATH') . 'uploads/large/' . $data->icon) }}"
+                            class="outsource-pdf-btn" target="_blank" rel="noopener noreferrer" download>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <path d="m7 10 5 5 5-5" />
+                                <path d="M12 15V3" />
+                            </svg>
+                            Download PDF
+                        </a>
+                    @endif
+
+                </div>
             </div>
-            {!! $data_child->links('themes.default.common.pagination') !!}
-        </div>
-    </section>
-    <section class="career-banner">
-        <div class="wrap">
-            <h2>Want sector-specific insight for your business?</h2>
-            <a href="{{ url('page/' . posttype_url($contact->uri)) }}" class="btn btn-ghost">Talk to us <svg
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg></a>
+
         </div>
     </section>
 
+    @if ($data_child->count() > 0)
+        <section class="section">
+            <div class="wrap">
+                <div class="journeys reveal on-light">
+                    @foreach ($data_child as $child)
+                        <div class="journey card-light">
+                            <div class="idx">{{ $child->post_title }}</div>
+                            <h4>{!! $child->subtitle !!}</h4>
+                            <p>{!! $child->post_content !!}</p>
+                        </div>
+                    @endforeach
+                </div>
+                {!! $data_child->links('themes.default.common.pagination') !!}
+            </div>
+        </section>
+    @endif
 
-@endsection
+@stop

@@ -42,10 +42,10 @@ Route::get('page/{parent}/{uri}', 'FrontendControllers\FrontpageController@paged
 Route::get('page/{uri}', 'FrontendControllers\FrontpageController@posttype')->name('page.posttype');
 
 
+Route::get('{parenturi}/{uri}.html', 'FrontendControllers\FrontpageController@pagedetail_child')->name('page.pagedetail_child');
 Route::get('service-category/{uri}.html', 'FrontendControllers\FrontpageController@servicetype')->name('page.servicetype');
 Route::get('trades/detail/{uri}', 'FrontendControllers\FrontpageController@portfolio')->name('page.portfolio');
 Route::post('/service/serviceorder/{uri}', 'FrontendControllers\FrontpageController@serviceorder')->where('uri', '[0-9A-Za-z]+');
-Route::get('{parenturi}/{uri}.html', 'FrontendControllers\FrontpageController@pagedetail_child')->name('page.pagedetail_child');
 Route::get('{parenturi}/apply/{uri}.html', 'FrontendControllers\FrontpageController@apply');
 Route::post('page/apply/applyjob', 'FrontendControllers\FrontpageController@career_apply_action')->name('career-apply-action');
 Route::post('/career/careerapply/{uri}', 'FrontendControllers\FrontpageController@careerapply')->where('uri', '[0-9A-Za-z]+');
