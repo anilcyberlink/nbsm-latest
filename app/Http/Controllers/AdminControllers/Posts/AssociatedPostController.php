@@ -68,7 +68,7 @@ class AssociatedPostController extends Controller
             $thumbnail = $request->file('thumbnail')->getClientOriginalName();
             $extension = $request->file('thumbnail')->getClientOriginalExtension();
             $thumbnail = explode('.', $thumbnail);
-            $thumbnail_name = Str::slug($thumbnail[0]) . '-' . Str::random(40) . '.' . $extension;
+            $thumbnail_name = Str::slug($thumbnail[0]) . '-' . Str::random(5) . '.' . $extension;
 
             $destinationPath_medium = public_path('uploads/medium');
             $destinationOriginal = public_path('uploads/original');
@@ -151,7 +151,7 @@ class AssociatedPostController extends Controller
             $thumbnail = $request->file('thumbnail')->getClientOriginalName();
             $extension = $request->file('thumbnail')->getClientOriginalExtension();
             $thumbnail = explode('.', $thumbnail);
-            $thumbnail_name = Str::slug($thumbnail[0]) . '-' . Str::random(40) . '.' . $extension;
+            $thumbnail_name = Str::slug($thumbnail[0]) . '-' . Str::random(5) . '.' . $extension;
 
             $destinationPath_medium = public_path('uploads/medium');
             $destinationOriginal = public_path('uploads/original');

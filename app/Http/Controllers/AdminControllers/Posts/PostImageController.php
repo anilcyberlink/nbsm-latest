@@ -57,17 +57,17 @@ class PostImageController extends Controller
         if($request->hasfile('file_image')){
             $_file = $request->file('file_image')->getClientOriginalName();
             $extension = $request->file('file_image')->getClientOriginalExtension();
-            $_file = explode('.', $_file);            
-            $file_name = Str::slug($_file[0]) . '-' . Str::random(40) . '.' . $extension;
+            $_file = explode('.', $_file);
+            $file_name = Str::slug($_file[0]) . '-' . Str::random(5) . '.' . $extension;
             $destinationPath_medium = public_path('uploads/medium');
             $destinationOriginal = public_path('uploads/galleries');
             $thumbanil_picture = Image::make($file->getRealPath());
             $thumbanil_picture->save($destinationOriginal .'/'. $file_name );
             $thumbanil_picture->resize(1000, 1000, function($constraint){
                 $constraint->aspectRatio();
-            })->save($destinationPath_medium .'/'. $file_name );           
+            })->save($destinationPath_medium .'/'. $file_name );
         }
-        
+
         $req['post_id'] = $request->post_id;
         $req['file_name'] = $file_name;
         $data = PostImageModel::create($req);
@@ -77,7 +77,7 @@ class PostImageController extends Controller
          //        'message' => 'Image Upload Successfully',
          //        'class_name' => 'alert-success'
          //    ]);
-       
+
         }else{
              return response()->json([
                 'message' => $validation->errors()->all(),
@@ -131,14 +131,14 @@ class PostImageController extends Controller
     {
         $data = PostImageModel::find($id);
         if($data->file_name){
-            
+
         if(file_exists(public_path('uploads/medium/' .  $data->file_name))){
             unlink('uploads/medium/' . $data->file_name);
         }
          if(file_exists(public_path('uploads/galleries/' .  $data->file_name))){
             unlink('uploads/galleries/' . $data->file_name);
         }
-        
+
         }
         $data->delete();
         return response()->json([

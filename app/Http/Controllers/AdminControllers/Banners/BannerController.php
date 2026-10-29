@@ -57,7 +57,7 @@ class BannerController extends Controller
         $banner = $request->file('picture')->getClientOriginalName();
         $extension = $request->file('picture')->getClientOriginalExtension();
         $banner = explode('.', $banner);
-        $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.' . $extension;
+        $banner_name = Str::slug($banner[0]) . '-' . Str::random(5) . '.' . $extension;
         $destinationPath = public_path('uploads/banners');
         $banner_picture = Image::make($file->getRealPath());
         //$width = Image::make($file->getRealPath())->width();
@@ -109,7 +109,7 @@ class BannerController extends Controller
      {
          $request->validate([
             'title'=>'required'
-        ]);  
+        ]);
         $banner_width = env('BANNER_WIDTH');
         $banner_height = env('BANNER_HEIGHT');
 
@@ -129,7 +129,7 @@ class BannerController extends Controller
             $banner = $request->file('picture')->getClientOriginalName();
             $extension = $request->file('picture')->getClientOriginalExtension();
             $banner = explode('.', $banner);
-            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.' . $extension;
+            $banner_name = Str::slug($banner[0]) . '-' . Str::random(5) . '.' . $extension;
             $destinationPath = public_path('uploads/banners');
             $banner_picture = Image::make($file->getRealPath());
             $banner_picture->resize($banner_width, $banner_height, function($constraint){
@@ -164,7 +164,7 @@ class BannerController extends Controller
             }
         $data->delete();
     }
-    
+
     // Delete Banner Picture
     function banner_delete(BannerModel $bannerModel, $id)
     {

@@ -483,18 +483,13 @@
 
                         {{-- File --}}
                         <div class="sid_ mb10 nbms-post-card">
-
                             <div class="nbms-post-card-header">
                                 <i class="fa fa-file"></i>
-                                File
+                                File(PDF)
                             </div>
-
                             <div class="nbms-post-card-body">
-
-                                <input type="file" name="icon" />
-
+                                <input type="file" name="icon" accept=".pdf,application/pdf" />
                             </div>
-
                         </div>
 
 

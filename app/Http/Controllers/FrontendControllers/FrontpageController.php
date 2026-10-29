@@ -124,7 +124,7 @@ class FrontpageController extends Controller
         $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', 0)->orderBy('post_order', 'desc')->get();
         $contact = PostTypeModel::where('id', '20')->first();
 
-        // dd($data,$associated_posts,$data_child);
+        // dd($data,$data_child);
         return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related', 'contact'));
     }
 

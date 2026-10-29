@@ -18,10 +18,10 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
+    {
       //return redirect('admin/dashboard');
       $data = PortfolioModel::orderBy('ordering','asc')->get();
-      return view('admin.portfolio.index', compact('data')); 
+      return view('admin.portfolio.index', compact('data'));
     }
 
     public function list($uri){
@@ -29,7 +29,7 @@ class PortfolioController extends Controller
     }
 
     public function childlist($uri,$id){
-     
+
     }
 
     /**
@@ -38,7 +38,7 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {     
+    {
       $category = PortfolioCategoryModel::all();
        $ord = PortfolioModel::max('ordering');
       $ordering = $ord+1;
@@ -52,7 +52,7 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
       $request->validate([
         'title'=>'required',
         'uri'=>'required|unique:cl_portfolio'
@@ -74,21 +74,21 @@ class PortfolioController extends Controller
       $icon_name = '';
 
       // Upload Icon
-      if($request->hasfile('icon')){       
+      if($request->hasfile('icon')){
         $_icon = $request->file('icon')->getClientOriginalName();
         $icon_extension = $request->file('icon')->getClientOriginalExtension();
         $_icon = explode('.', $_icon);
-        $icon_name = Str::slug($_icon[0]) . '-' . Str::random(40) . '.' . $icon_extension;
-        
+        $icon_name = Str::slug($_icon[0]) . '-' . Str::random(5) . '.' . $icon_extension;
+
         if($icon_extension != 'svg' && $icon_extension != 'webp'){
         $icon_picture = Image::make($icon->getRealPath());
         $width = Image::make($icon->getRealPath())->width();
-        $height = Image::make($icon->getRealPath())->height();      
+        $height = Image::make($icon->getRealPath())->height();
          /*Upload Original Image*/
-        $icon_picture->save($destinationOriginal .'/'. $icon_name ); 
+        $icon_picture->save($destinationOriginal .'/'. $icon_name );
         $icon_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $icon_name ); 
+        })->save($destinationPath_medium .'/'. $icon_name );
 
         }else{
           move_uploaded_file($_FILES["icon"]["tmp_name"], $destinationPath_medium.'/'.$icon_name);
@@ -96,21 +96,21 @@ class PortfolioController extends Controller
       }
 
       // Upload Thumbnail
-      if($request->hasfile('thumbnail')){       
+      if($request->hasfile('thumbnail')){
         $_thumbnail = $request->file('thumbnail')->getClientOriginalName();
         $thumbnail_extension = $request->file('thumbnail')->getClientOriginalExtension();
         $_thumbnail = explode('.', $_thumbnail);
-        $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(40) . '.' . $thumbnail_extension;
-        
+        $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(5) . '.' . $thumbnail_extension;
+
         if($thumbnail_extension != 'svg' && $thumbnail_extension != 'webp'){
         $thumbnail_picture = Image::make($thumbnail->getRealPath());
         $width = Image::make($thumbnail->getRealPath())->width();
-        $height = Image::make($thumbnail->getRealPath())->height();      
+        $height = Image::make($thumbnail->getRealPath())->height();
           /*Upload Original Image*/
-        $thumbnail_picture->save($destinationOriginal .'/'. $thumbnail_name ); 
+        $thumbnail_picture->save($destinationOriginal .'/'. $thumbnail_name );
         $thumbnail_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $thumbnail_name ); 
+        })->save($destinationPath_medium .'/'. $thumbnail_name );
 
         }else{
           move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $destinationPath_medium.'/'.$thumbnail_name);
@@ -118,22 +118,22 @@ class PortfolioController extends Controller
       }
 
        // Upload Page Thumbnail
-       if($request->hasfile('page_thumbnail')){       
+       if($request->hasfile('page_thumbnail')){
         $_page_thumbnail = $request->file('page_thumbnail')->getClientOriginalName();
         $page_thumbnail_extension = $request->file('page_thumbnail')->getClientOriginalExtension();
         $_page_thumbnail = explode('.', $_page_thumbnail);
-        $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(40) . '.' . $page_thumbnail_extension;
-        
+        $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(5) . '.' . $page_thumbnail_extension;
+
         if($page_thumbnail_extension != 'svg' && $page_thumbnail_extension != 'webp'){
         $page_thumbnail_picture = Image::make($page_thumbnail->getRealPath());
         $width = Image::make($page_thumbnail->getRealPath())->width();
-        $height = Image::make($page_thumbnail->getRealPath())->height();      
+        $height = Image::make($page_thumbnail->getRealPath())->height();
 
         /*Upload Original Image*/
-        $page_thumbnail_picture->save($destinationOriginal .'/'. $page_thumbnail_name ); 
+        $page_thumbnail_picture->save($destinationOriginal .'/'. $page_thumbnail_name );
         $page_thumbnail_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $page_thumbnail_name ); 
+        })->save($destinationPath_medium .'/'. $page_thumbnail_name );
 
         }else{
           move_uploaded_file($_FILES["page_thumbnail"]["tmp_name"], $destinationPath_medium.'/'.$page_thumbnail_name);
@@ -141,32 +141,32 @@ class PortfolioController extends Controller
       }
 
        // Upload Banner
-       if($request->hasfile('banner')){       
+       if($request->hasfile('banner')){
         $_banner = $request->file('banner')->getClientOriginalName();
         $banner_extension = $request->file('banner')->getClientOriginalExtension();
         $_banner = explode('.', $_banner);
-        $banner_name = Str::slug($_banner[0]) . '-' . Str::random(40) . '.' . $banner_extension;
-        
+        $banner_name = Str::slug($_banner[0]) . '-' . Str::random(5) . '.' . $banner_extension;
+
         if($banner_extension != 'svg' && $banner_extension != 'webp'){
         $banner_picture = Image::make($banner->getRealPath());
         $width = Image::make($banner->getRealPath())->width();
-        $height = Image::make($banner->getRealPath())->height();      
+        $height = Image::make($banner->getRealPath())->height();
           /*Upload Original Image*/
-        $banner_picture->save($destinationOriginal .'/'. $banner_name ); 
+        $banner_picture->save($destinationOriginal .'/'. $banner_name );
         $banner_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $banner_name ); 
+        })->save($destinationPath_medium .'/'. $banner_name );
 
         }else{
           move_uploaded_file($_FILES["banner"]["tmp_name"], $destinationPath_medium.'/'.$banner_name);
         }
       }
-      $data['uri'] = Str::slug($request->uri); 
+      $data['uri'] = Str::slug($request->uri);
       $data['thumbnail'] = $thumbnail_name;
       $data['page_thumbnail'] = $page_thumbnail_name;
       $data['icon'] = $icon_name;
-      $data['banner'] = $banner_name;      
-      $result = PortfolioModel::create($data);       
+      $data['banner'] = $banner_name;
+      $result = PortfolioModel::create($data);
       $last_id = $result->id;
       if($result){
         return redirect( '/admin/our-trades/'.$last_id.'/edit')->with('message','Successfully added.');
@@ -193,7 +193,7 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(PortfolioModel $portfolioModel, $id)
-    {      
+    {
      $category = PortfolioCategoryModel::all();
      $data = PortfolioModel::find($id);
      return view('admin.portfolio.edit', compact('data','category'));
@@ -207,13 +207,13 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PortfolioModel $portfolioModel, $id)
-    {   
+    {
       $medium_width = env('MEDIUM_WIDTH');
       $medium_height = env('MEDIUM_HEIGHT');
       $destinationPath_medium = public_path('uploads/medium');
       $destinationOriginal = public_path('uploads/original');
 
-      $data = PortfolioModel::find($id);  
+      $data = PortfolioModel::find($id);
       $thumbnail = $request->file('thumbnail');
       $page_thumbnail = $request->file('page_thumbnail');
       $banner = $request->file('banner');
@@ -224,8 +224,8 @@ class PortfolioController extends Controller
       $icon_name = '';
 
       // Update Icon
-      if($request->hasfile('icon')){  
-        $data = PortfolioModel::find($id); 
+      if($request->hasfile('icon')){
+        $data = PortfolioModel::find($id);
         if($data->icon){
           if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->icon)){
             unlink(env('PUBLIC_PATH').'uploads/medium/' . $data->icon);
@@ -233,21 +233,21 @@ class PortfolioController extends Controller
           if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->icon)){
             unlink(env('PUBLIC_PATH').'uploads/original/' . $data->icon);
           }
-        }     
+        }
         $_icon = $request->file('icon')->getClientOriginalName();
         $icon_extension = $request->file('icon')->getClientOriginalExtension();
         $_icon = explode('.', $_icon);
-        $icon_name = Str::slug($_icon[0]) . '-' . Str::random(40) . '.' . $icon_extension;
-        
+        $icon_name = Str::slug($_icon[0]) . '-' . Str::random(5) . '.' . $icon_extension;
+
         if($icon_extension != 'svg' && $icon_extension != 'webp'){
         $icon_picture = Image::make($icon->getRealPath());
         $width = Image::make($icon->getRealPath())->width();
-        $height = Image::make($icon->getRealPath())->height();      
+        $height = Image::make($icon->getRealPath())->height();
          /*Upload Original Image*/
-        $icon_picture->save($destinationOriginal .'/'. $icon_name ); 
+        $icon_picture->save($destinationOriginal .'/'. $icon_name );
         $icon_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $icon_name ); 
+        })->save($destinationPath_medium .'/'. $icon_name );
 
         }else{
           move_uploaded_file($_FILES["icon"]["tmp_name"], $destinationPath_medium.'/'.$icon_name);
@@ -256,8 +256,8 @@ class PortfolioController extends Controller
       }
 
       // Update Thumbnail
-      if($request->hasfile('thumbnail')){   
-        $data = PortfolioModel::find($id); 
+      if($request->hasfile('thumbnail')){
+        $data = PortfolioModel::find($id);
         if($data->thumbnail){
           if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->thumbnail)){
             unlink(env('PUBLIC_PATH').'uploads/medium/' . $data->thumbnail);
@@ -265,21 +265,21 @@ class PortfolioController extends Controller
           if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->thumbnail)){
             unlink(env('PUBLIC_PATH').'uploads/original/' . $data->thumbnail);
           }
-        }      
+        }
         $_thumbnail = $request->file('thumbnail')->getClientOriginalName();
         $thumbnail_extension = $request->file('thumbnail')->getClientOriginalExtension();
         $_thumbnail = explode('.', $_thumbnail);
-        $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(40) . '.' . $thumbnail_extension;
-       
+        $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(5) . '.' . $thumbnail_extension;
+
         if($thumbnail_extension != 'svg' && $thumbnail_extension != 'webp'){
         $thumbnail_picture = Image::make($thumbnail->getRealPath());
         $width = Image::make($thumbnail->getRealPath())->width();
-        $height = Image::make($thumbnail->getRealPath())->height();      
+        $height = Image::make($thumbnail->getRealPath())->height();
           /*Upload Original Image*/
-        $thumbnail_picture->save($destinationOriginal .'/'. $thumbnail_name ); 
+        $thumbnail_picture->save($destinationOriginal .'/'. $thumbnail_name );
         $thumbnail_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $thumbnail_name ); 
+        })->save($destinationPath_medium .'/'. $thumbnail_name );
 
         }else{
           move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $destinationPath_medium.'/'.$thumbnail_name);
@@ -288,8 +288,8 @@ class PortfolioController extends Controller
       }
 
        // Update Page Thumbnail
-       if($request->hasfile('page_thumbnail')){ 
-        $data = PortfolioModel::find($id); 
+       if($request->hasfile('page_thumbnail')){
+        $data = PortfolioModel::find($id);
         if($data->page_thumbnail){
           if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->page_thumbnail)){
             unlink(env('PUBLIC_PATH').'uploads/medium/' . $data->page_thumbnail);
@@ -297,21 +297,21 @@ class PortfolioController extends Controller
           if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->page_thumbnail)){
             unlink(env('PUBLIC_PATH').'uploads/original/' . $data->page_thumbnail);
           }
-        }           
+        }
         $_page_thumbnail = $request->file('page_thumbnail')->getClientOriginalName();
         $page_thumbnail_extension = $request->file('page_thumbnail')->getClientOriginalExtension();
         $_page_thumbnail = explode('.', $_page_thumbnail);
-        $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(40) . '.' . $page_thumbnail_extension;
-       
+        $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(5) . '.' . $page_thumbnail_extension;
+
         if($page_thumbnail_extension != 'svg' && $page_thumbnail_extension != 'webp'){
         $page_thumbnail_picture = Image::make($page_thumbnail->getRealPath());
         $width = Image::make($page_thumbnail->getRealPath())->width();
-        $height = Image::make($page_thumbnail->getRealPath())->height();      
+        $height = Image::make($page_thumbnail->getRealPath())->height();
           /*Upload Original Image*/
-        $page_thumbnail_picture->save($destinationOriginal .'/'. $page_thumbnail_name ); 
+        $page_thumbnail_picture->save($destinationOriginal .'/'. $page_thumbnail_name );
         $page_thumbnail_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $page_thumbnail_name ); 
+        })->save($destinationPath_medium .'/'. $page_thumbnail_name );
 
         }else{
           move_uploaded_file($_FILES["page_thumbnail"]["tmp_name"], $destinationPath_medium.'/'.$page_thumbnail_name);
@@ -320,8 +320,8 @@ class PortfolioController extends Controller
       }
 
       // Update Banner
-      if($request->hasfile('banner')){    
-        $data = PortfolioModel::find($id); 
+      if($request->hasfile('banner')){
+        $data = PortfolioModel::find($id);
         if($data->banner){
           if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->banner)){
             unlink(env('PUBLIC_PATH').'uploads/medium/' . $data->banner);
@@ -329,22 +329,22 @@ class PortfolioController extends Controller
           if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->banner)){
             unlink(env('PUBLIC_PATH').'uploads/original/' . $data->banner);
           }
-        }    
+        }
         $_banner = $request->file('banner')->getClientOriginalName();
         $banner_extension = $request->file('banner')->getClientOriginalExtension();
         $_banner = explode('.', $_banner);
-        $banner_name = Str::slug($_banner[0]) . '-' . Str::random(40) . '.' . $banner_extension;
-        
+        $banner_name = Str::slug($_banner[0]) . '-' . Str::random(5) . '.' . $banner_extension;
+
         if($banner_extension != 'svg' && $banner_extension != 'webp'){
         $banner_picture = Image::make($banner->getRealPath());
         $width = Image::make($banner->getRealPath())->width();
-        $height = Image::make($banner->getRealPath())->height();      
+        $height = Image::make($banner->getRealPath())->height();
          /*Upload Original Image*/
         $banner_picture->save($destinationOriginal .'/'. $banner_name );
         $banner_picture->resize($medium_width, $medium_height, function($constraint){
           $constraint->aspectRatio();
-        })->save($destinationPath_medium .'/'. $banner_name ); 
- 
+        })->save($destinationPath_medium .'/'. $banner_name );
+
         }else{
           move_uploaded_file($_FILES["banner"]["tmp_name"], $destinationPath_medium.'/'.$banner_name);
         }
@@ -352,19 +352,19 @@ class PortfolioController extends Controller
       }
 
       $data->title = $request->title;
-      $data->uri = Str::slug($request->uri); 
+      $data->uri = Str::slug($request->uri);
       $data->sub_title = $request->sub_title;
       $data->content = $request->content;
-      $data->brief = $request->brief;  
+      $data->brief = $request->brief;
       $data->category_id = $request->category_id;
-      $data->ordering = $request->ordering;       
+      $data->ordering = $request->ordering;
       $data->meta_keyword = $request->meta_keyword;
       $data->meta_description = $request->meta_description;
       $data->external_link = $request->external_link;
       $data->client_name = $request->client_name;
       $data->country = $request->country;
       $data->service = $request->service;
-      $data->year = $request->year;    
+      $data->year = $request->year;
       if($data->save()){
         return redirect()->back()->with('message','Update Sucessfully.');
       }
@@ -385,7 +385,7 @@ class PortfolioController extends Controller
         }
         if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->icon)){
           unlink(env('PUBLIC_PATH').'uploads/original/' . $data->icon);
-        } 
+        }
       }
       if($data->thumbnail != NULL){
         if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->thumbnail)){
@@ -393,7 +393,7 @@ class PortfolioController extends Controller
         }
         if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->thumbnail)){
           unlink(env('PUBLIC_PATH').'uploads/original/' . $data->thumbnail);
-        } 
+        }
       }
       if($data->page_thumbnail != NULL){
         if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->page_thumbnail)){
@@ -401,7 +401,7 @@ class PortfolioController extends Controller
         }
         if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->page_thumbnail)){
           unlink(env('PUBLIC_PATH').'uploads/original/' . $data->page_thumbnail);
-        } 
+        }
       }
       if($data->banner != NULL){
         if(file_exists(env('PUBLIC_PATH').'uploads/medium/' . $data->banner)){
@@ -409,7 +409,7 @@ class PortfolioController extends Controller
         }
         if(file_exists(env('PUBLIC_PATH').'uploads/original/' . $data->banner)){
           unlink(env('PUBLIC_PATH').'uploads/original/' . $data->banner);
-        } 
+        }
       }
       $data->delete();
       return 'Are you sure to delete?';
@@ -428,7 +428,7 @@ class PortfolioController extends Controller
         foreach($template as $tmp){
           if(strpos($tmp, "template-") !== false){
             $tmpl[] = $tmp;
-          }   
+          }
         }
       }
       return $tmpl;
@@ -441,7 +441,7 @@ class PortfolioController extends Controller
         foreach($template as $tmpl){
           if(strpos($tmpl, "templatechild-") !== false){
             $tmpl2[] = $tmpl;
-          }   
+          }
         }
       }
       return $tmpl2;
@@ -518,5 +518,5 @@ class PortfolioController extends Controller
        return response('Delete Successful.');
      }
 
-  
+
 }
