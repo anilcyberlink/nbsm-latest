@@ -6,6 +6,9 @@
 
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
+        <div class="page-header-bg">
+            <img src="{{ asset('themes-assets/images/nbsm-default.jpg') }}" alt="NBSM Insights Banner">
+        </div>
         <div class="wrap">
             <div class="breadcrumb"><a href="{{ url('/') }}">Home</a> &nbsp;/&nbsp; <span>{{ $data->post_type }}</span>
             </div>
@@ -63,7 +66,7 @@
                                     <span class="eyebrow on-light">{{ $child->post_title }}</span>
                                     <h4 style="margin-top:12px;font-size:17px;">{{ $child->sub_title }}</h4>
                                     <p style="margin-top:10px;font-size:13.5px;color:var(--slate);">
-                                        {!!  $child->post_excerpt  !!}
+                                        {!! $child->post_excerpt !!}
                                     </p>
                                 </a>
                             </div>
