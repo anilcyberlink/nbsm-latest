@@ -42,7 +42,7 @@ class ImageGalleryCategoryController extends Controller
     {
         $request->validate([
             'category'=>'required'
-        ]);       
+        ]);
 
         $data = $request->all();
         $file = $request->file('picture');
@@ -53,7 +53,7 @@ class ImageGalleryCategoryController extends Controller
             $picture = $request->file('picture')->getClientOriginalName();
             $extension = $request->file('picture')->getClientOriginalExtension();
             $picture = explode('.', $picture);
-            $picture_name = Str::slug($picture[0]) .'-cat-thumb-'. Str::random(40) .'.'. $extension;
+            $picture_name = Str::slug($picture[0]) .'-cat-thumb-'. Str::random(5) .'.'. $extension;
             $destinationPath = public_path('uploads/galleries');
             $gallery_picture = Image::make($file->getRealPath());
             $gallery_picture->resize($thumb_width,$thumb_height, function($constraint){
@@ -100,37 +100,37 @@ class ImageGalleryCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ImageGalleryCategoryModel $imageGalleryCategoryModel, $id)
-    {   
-        $data = ImageGalleryCategoryModel::find($id);   
+    {
+        $data = ImageGalleryCategoryModel::find($id);
         $data->category = $request->category;
         $data->caption = $request->caption;
         if($request->hasFile('picture')){
             $thumb_width = env('GALLERY_IMAGE_THUMB_WIDTH');
             $thumb_height = env('GALLERY_IMAGE_THUMB_HEIGHT');
-            $file = $request->file('picture'); 
+            $file = $request->file('picture');
              if($data->picture){
           if(file_exists(env('PUBLIC_PATH').'uploads/galleries/' . $data->picture)){
             unlink(env('PUBLIC_PATH').'uploads/galleries/' . $data->picture);
                   }
-                 
+
                 }
 
             $picture = $request->file('picture')->getClientOriginalName();
             $extension = $request->file('picture')->getClientOriginalExtension();
             $picture = explode('.', $picture);
-            $picture_name = Str::slug($picture[0]) .'-cat-thumb-'. Str::random(40) .'.'. $extension;
+            $picture_name = Str::slug($picture[0]) .'-cat-thumb-'. Str::random(5) .'.'. $extension;
             $destinationPath = public_path('uploads/galleries');
             $gallery_picture = Image::make($file->getRealPath());
             $gallery_picture->resize($thumb_width,$thumb_height, function($constraint){
                 $constraint->aspectRatio();
-            })->save($destinationPath .'/'. $picture_name); 
+            })->save($destinationPath .'/'. $picture_name);
 
-            $data->picture = $picture_name;  
+            $data->picture = $picture_name;
         }
 
-        
-        $data->save();        
-        return redirect()->back()->with('message','Update Successful.');        
+
+        $data->save();
+        return redirect()->back()->with('message','Update Successful.');
 
     }
 
@@ -147,8 +147,8 @@ class ImageGalleryCategoryController extends Controller
           if(file_exists(env('PUBLIC_PATH').'uploads/galleries/' . $data->picture)){
             unlink(env('PUBLIC_PATH').'uploads/galleries/' . $data->picture);
                   }
-                 
-                }       
+
+                }
         $data->delete();
     }
 }

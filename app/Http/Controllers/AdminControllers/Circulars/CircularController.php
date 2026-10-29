@@ -20,13 +20,13 @@ class CircularController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($typeId)
-    {  
+    {
        $data = CircularModel::where('circular_type',$typeId)->get();
        return view('admin.circulars.index', compact('data'));
  }
- 
+
   public function list($type)
-    {  
+    {
         return "list";
         $_type = trim($type);
         $ct_id = $this->getCircularTypeId($_type);
@@ -40,7 +40,7 @@ class CircularController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($typeId)
-    {     
+    {
     $department = DepartmentModel::all();
     $type = CircularTypeModel::all();
     return view('admin.circulars.create', compact('type','department'));
@@ -67,14 +67,14 @@ class CircularController extends Controller
          if($request->hasfile('circular_thumbnail')){
             $product = $request->file('circular_thumbnail')->getClientOriginalName();
             $extension = $request->file('circular_thumbnail')->getClientOriginalExtension();
-            
+
             $product = explode('.', $product);
-            $file_name = Str::slug($product[0]) . '-' . Str::random(40) . '.' . $extension;
-            
+            $file_name = Str::slug($product[0]) . '-' . Str::random(5) . '.' . $extension;
+
             $destinationPath_large = public_path('uploads/large');
 
             $product_picture = Image::make($file->getRealPath());
-        
+
             //  $width = Image::make($file->getRealPath())->width();
             // $height = Image::make($file->getRealPath())->height();
 
@@ -84,7 +84,7 @@ class CircularController extends Controller
         }
 
         $data['circular_type'] = $request->circular_type;
-        $data['uri'] = Str::slug($request->uri); 
+        $data['uri'] = Str::slug($request->uri);
         $data['circular_thumbnail'] = $file_name;
         $data['department'] = serialize($request->department);
         // $data['members'] = implode(',',$request->user);
@@ -129,7 +129,7 @@ class CircularController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, CircularModel $circularModel,$circulartype,$id)
-    {      
+    {
          $request->validate([
             'circular_title'=>'required',
             'uri'=>'required'
@@ -138,24 +138,24 @@ class CircularController extends Controller
         $large_width = env('LARGE_WIDTH');
         $large_height = env('LARGE_HEIGHT');
 
-        $data = CircularModel::find($id);  
+        $data = CircularModel::find($id);
         $file =  $request->file('circular_thumbnail');
         $product_name = '';
         if($request->hasfile('circular_thumbnail')){
-            $data = CircularModel::find($id);  
+            $data = CircularModel::find($id);
             if($data->circular_thumbnail){
-                 
+
                 if(file_exists(public_path('public/uploads/large/' .  $data->circular_thumbnail))){
                     unlink('public/uploads/large/' . $data->circular_thumbnail);
                 }
-                   
+
             }
             $product = $request->file('circular_thumbnail')->getClientOriginalName();
             $extension = $request->file('circular_thumbnail')->getClientOriginalExtension();
             $product = explode('.', $product);
-            $product_name = Str::slug($product[0]) . '-' . Str::random(40) . '.' . $extension;
+            $product_name = Str::slug($product[0]) . '-' . Str::random(5) . '.' . $extension;
             $destinationPath_large = public_path('uploads/large');
-           
+
         $product_picture = Image::make($file->getRealPath());
 
         $product_picture->resize($large_width, $large_height, function($constraint){
@@ -163,7 +163,7 @@ class CircularController extends Controller
              })->save($destinationPath_large .'/'. $product_name );
 
         $data->circular_thumbnail = $product_name;
-        }    
+        }
 
         $data->circular_date = $request->circular_date;
         $data->circular_title = $request->circular_title;
@@ -172,7 +172,7 @@ class CircularController extends Controller
         $data->circular_excerpt = $request->circular_excerpt;
         $data['department'] = serialize($request->department);
         // $data['members'] = implode(',',$request->user);
-        $data->uri = Str::slug($request->uri);  
+        $data->uri = Str::slug($request->uri);
         $data->ordering = $request->ordering;
         if($data->save()){
             return redirect()->back()->with('message','Update Sucessfully.');
@@ -208,7 +208,7 @@ class CircularController extends Controller
             foreach($template as $tmp){
                 if(strpos($tmp, "template-") !== false){
                     $tmpl[] = $tmp;
-                }   
+                }
             }
         }
         return $tmpl;
@@ -220,14 +220,14 @@ class CircularController extends Controller
         $file = $exp[0];
         return $file;
     }
-    
+
       // Delete Post Thumbnail
      function delete_post_thumb(PostModel $postModel, $id){
          $data = PostModel::find($id);
          if($data->page_thumbnail){
                 if(file_exists(public_path('uploads/ex_large/' .  $data->page_thumbnail))){
                     unlink('uploads/ex_large/' . $data->page_thumbnail);
-                } 
+                }
                 if(file_exists(public_path('uploads/large/' .  $data->page_thumbnail))){
                     unlink('uploads/large/' . $data->page_thumbnail);
                 }
@@ -242,37 +242,37 @@ class CircularController extends Controller
                 }
                 if(file_exists(public_path('uploads/thumbnail/' .  $data->page_thumbnail))){
                     unlink('uploads/thumbnail/' . $data->page_thumbnail);
-                }     
+                }
             }
          $data->page_thumbnail = NULL;
          $data->save();
          return response('Delete Successful.');
     }
-    
+
     public function listusers($dept){
         $data['users'] = MemberModel::where(['department'=>intval($dept)])->get();
         return $data;
     }
-     
+
     public function departments(){
         $data['departments'] = DepartmentModel::all();
         return $data;
     }
-    
+
     private function getCircular($param){
         $data = CircularTypeModel::where('uri',trim($param))->first();
         return $data;
     }
-    
+
      // Delete Post Thumbnail
     public function delete_circular_thumb(CircularModel $circularModel, $id){
          $data = CircularModel::find($id);
          if($data->circular_thumbnail){
-                 
+
                 if(file_exists(public_path('uploads/large/' .  $data->circular_thumbnail))){
                     unlink('uploads/large/' . $data->circular_thumbnail);
                 }
-                    
+
             }
          $data->circular_thumbnail = NULL;
          $data->save();

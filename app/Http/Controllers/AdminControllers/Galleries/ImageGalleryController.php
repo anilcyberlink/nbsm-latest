@@ -51,14 +51,14 @@ class ImageGalleryController extends Controller
             $picture = $request->file('picture')->getClientOriginalName();
             $extension = $request->file('picture')->getClientOriginalExtension();
             $picture = explode('.', $picture);
-        $picture_name = Str::slug($picture[0]) .'-'. Str::random(25) . '.' . $extension;
+        $picture_name = Str::slug($picture[0]) .'-'. Str::random(5) . '.' . $extension;
             $destinationPath = public_path('uploads/galleries');
             $gallery_picture = Image::make($file->getRealPath());
             $gallery_picture->resize($thumb_width,$thumb_height,function($constraint){
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$picture_name);
         }
-        $data['picture'] = $picture_name; 
+        $data['picture'] = $picture_name;
         $result = ImageGalleryModel::create($data);
         if($result){
             return redirect()->back()->with('message','Successfully added.');
@@ -100,14 +100,14 @@ class ImageGalleryController extends Controller
      */
     public function update(Request $request, ImageGalleryModel $imageGalleryModel, $id)
     {
-        $data = ImageGalleryModel::find($id);   
+        $data = ImageGalleryModel::find($id);
         $data->category_id = $request->category_id;
         $data->caption = $request->caption;
         if($request->hasFile('picture')){
 
             $thumb_width = env('GALLERY_IMAGE_THUMB_WIDTH');
             $thumb_height = env('GALLERY_IMAGE_THUMB_HEIGHT');
-            $file = $request->file('picture'); 
+            $file = $request->file('picture');
             if(file_exists(public_path('uploads/galleries/' . $data->picture ))){
                 unlink(public_path('uploads/galleries/' . $data->picture ));
             }
@@ -115,18 +115,18 @@ class ImageGalleryController extends Controller
             $picture = $request->file('picture')->getClientOriginalName();
             $extension = $request->file('picture')->getClientOriginalExtension();
             $picture = explode('.', $picture);
-            $picture_name = Str::slug($picture[0]) .'-'. Str::random(40) .'.'. $extension;
+            $picture_name = Str::slug($picture[0]) .'-'. Str::random(5) .'.'. $extension;
             $destinationPath = public_path('uploads/galleries');
             $gallery_picture = Image::make($file->getRealPath());
             $gallery_picture->resize($thumb_width,$thumb_height, function($constraint){
                 $constraint->aspectRatio();
-            })->save($destinationPath .'/'. $picture_name); 
+            })->save($destinationPath .'/'. $picture_name);
 
-            $data->picture = $picture_name;  
+            $data->picture = $picture_name;
         }
-        
-        $data->save();        
-        return redirect()->back()->with('message','Update Successful.'); 
+
+        $data->save();
+        return redirect()->back()->with('message','Update Successful.');
     }
 
     /**

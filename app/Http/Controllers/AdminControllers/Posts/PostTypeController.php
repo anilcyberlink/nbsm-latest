@@ -77,7 +77,7 @@ class PostTypeController extends Controller
             $product = $request->file('banner')->getClientOriginalName();
             $extension = $request->file('banner')->getClientOriginalExtension();
             $product = explode('.', $product);
-            $banner = Str::slug($product[0]) . '-' . Str::random(40) . '.' . $extension;
+            $banner = Str::slug($product[0]) . '-' . Str::random(5) . '.' . $extension;
 
             $destinationPath_medium = public_path('uploads/medium');
             $destinationOriginal = public_path('uploads/original');
@@ -177,7 +177,7 @@ class PostTypeController extends Controller
             $product = $request->file('banner')->getClientOriginalName();
             $extension = $request->file('banner')->getClientOriginalExtension();
             $product = explode('.', $product);
-            $product_name = Str::slug($product[0]) . '-' . Str::random(40) . '.' . $extension;
+            $product_name = Str::slug($product[0]) . '-' . Str::random(5) . '.' . $extension;
 
             $destinationPath_medium = public_path('uploads/medium');
             $destinationOriginal = public_path('uploads/original');

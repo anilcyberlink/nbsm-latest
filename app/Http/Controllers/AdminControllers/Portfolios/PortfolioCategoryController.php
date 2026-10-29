@@ -53,12 +53,12 @@ class PortfolioCategoryController extends Controller
             $category_file = $request->file('thumbnail')->getClientOriginalName();
             $extension = $request->file('thumbnail')->getClientOriginalExtension();
             $category_file = explode('.', $category_file);
-            $file_name = Str::slug( 'icon-'.$category_file[0]) . '-' . Str::random(40) . '.' . $extension;
+            $file_name = Str::slug( 'icon-'.$category_file[0]) . '-' . Str::random(5) . '.' . $extension;
 
             $destinationOriginal = public_path('uploads/original');
             $pic = Image::make($file->getRealPath());
             $width = Image::make($file->getRealPath())->width();
-            $height = Image::make($file->getRealPath())->height(); 
+            $height = Image::make($file->getRealPath())->height();
 
             $pic->resize($width, $height, function($constraint){
             $constraint->aspectRatio();
@@ -66,7 +66,7 @@ class PortfolioCategoryController extends Controller
              $data['thumbnail'] = $file_name;
         }
 
-        $data['uri'] = Str::slug($request->uri);        
+        $data['uri'] = Str::slug($request->uri);
         $result = PortfolioCategoryModel::create($data);
         if($result){
             return redirect()->back()->with('message','Successfully added.');
@@ -93,7 +93,7 @@ class PortfolioCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(PortfolioCategoryModel $portfolioCategoryModel, $id)
-    {   
+    {
        $data = PortfolioCategoryModel::find($id);
        return view('admin.portfolio-category.edit', compact('data'));
     }
@@ -111,43 +111,43 @@ class PortfolioCategoryController extends Controller
             'category'=>'required',
             'uri'=>'required'
         ]);
-        
+
         $data = PortfolioCategoryModel::find($id);
         $file =  $request->file('thumbnail');
         $file_name = '';
         if($request->hasfile('thumbnail')){
-            $data = PortfolioCategoryModel::find($id);  
-            if($data->thumbnail){               
+            $data = PortfolioCategoryModel::find($id);
+            if($data->thumbnail){
                 if(file_exists(public_path('uploads/original/' .  $data->thumbnail))){
                     unlink('uploads/original/' . $data->thumbnail);
-                }                  
+                }
             }
             $category_file = $request->file('thumbnail')->getClientOriginalName();
             $extension = $request->file('thumbnail')->getClientOriginalExtension();
             $category_file = explode('.', $category_file);
-            $file_name = Str::slug($category_file[0]) . '-' . Str::random(40) . '.' . $extension;
-            
+            $file_name = Str::slug($category_file[0]) . '-' . Str::random(5) . '.' . $extension;
+
             $destinationOriginal = public_path('uploads/original');
-            
+
 
         $product_picture = Image::make($file->getRealPath());
         $width = Image::make($file->getRealPath())->width();
-        $height = Image::make($file->getRealPath())->height();        
-      
+        $height = Image::make($file->getRealPath())->height();
+
         /****Upload Original Image****/
         $product_picture->resize($width, $height, function($constraint){
             $constraint->aspectRatio();
-             })->save($destinationOriginal .'/'. $file_name ); 
+             })->save($destinationOriginal .'/'. $file_name );
 
         $data->thumbnail = $file_name;
-        }   
+        }
 
         $data->category = $request->category;
         $data->category_caption = $request->category_caption;
-        $data->uri = Str::slug($request->uri);  
-        $data->ordering = $request->ordering;  
-        $data->category_content = $request->category_content;  
-        $data->thumbnail = $request->thumbnail;              
+        $data->uri = Str::slug($request->uri);
+        $data->ordering = $request->ordering;
+        $data->category_content = $request->category_content;
+        $data->thumbnail = $request->thumbnail;
         $data->save();
         return redirect()->back()->with('message','Update Successful.');
     }
@@ -171,10 +171,10 @@ class PortfolioCategoryController extends Controller
      // Delete Post Thumbnail
      function delete_category_thumb(PortfolioCategoryModel $portfolioCategoryModel, $id){
          $data = PortfolioCategoryModel::find($id);
-         if($data->thumbnail){                
+         if($data->thumbnail){
                 if(file_exists(public_path('uploads/original/' .  $data->thumbnail))){
                     unlink('uploads/original/' . $data->thumbnail);
-                }                   
+                }
             }
          $data->thumbnail = NULL;
          $data->save();

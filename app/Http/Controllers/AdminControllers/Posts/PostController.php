@@ -145,7 +145,7 @@ class PostController extends Controller
             $_thumbnail = $request->file('thumbnail')->getClientOriginalName();
             $thumbnail_extension = $request->file('thumbnail')->getClientOriginalExtension();
             $_thumbnail = explode('.', $_thumbnail);
-            $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(40) . '.' . $thumbnail_extension;
+            $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(5) . '.' . $thumbnail_extension;
 
             if ($thumbnail_extension != 'svg' && $thumbnail_extension != 'webp') {
                 $thumbnail_picture = Image::make($thumbnail->getRealPath());
@@ -166,7 +166,7 @@ class PostController extends Controller
             $_page_thumbnail = $request->file('page_thumbnail')->getClientOriginalName();
             $page_thumbnail_extension = $request->file('page_thumbnail')->getClientOriginalExtension();
             $_page_thumbnail = explode('.', $_page_thumbnail);
-            $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(40) . '.' . $page_thumbnail_extension;
+            $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(5) . '.' . $page_thumbnail_extension;
 
             if ($page_thumbnail_extension != 'svg' && $page_thumbnail_extension != 'webp') {
                 $page_thumbnail_picture = Image::make($page_thumbnail->getRealPath());
@@ -187,7 +187,7 @@ class PostController extends Controller
             $_banner = $request->file('banner')->getClientOriginalName();
             $banner_extension = $request->file('banner')->getClientOriginalExtension();
             $_banner = explode('.', $_banner);
-            $banner_name = Str::slug($_banner[0]) . '-' . Str::random(40) . '.' . $banner_extension;
+            $banner_name = Str::slug($_banner[0]) . '-' . Str::random(5) . '.' . $banner_extension;
 
             if ($banner_extension != 'svg' && $banner_extension != 'webp') {
                 $banner_picture = Image::make($banner->getRealPath());
@@ -327,31 +327,7 @@ class PostController extends Controller
             $icon->move($destinationPath, $name);
             $data['icon'] = $name;
         }
-        // Update Icon
 
-        //   if($request->hasfile('icon')){
-
-        //     $_icon = $request->file('icon')->getClientOriginalName();
-        //     $icon_extension = $request->file('icon')->getClientOriginalExtension();
-        //     $_icon = explode('.', $_icon);
-        //     $icon_name = Str::slug($_icon[0]) . '-' . Str::random(40) . '.' . $icon_extension;
-
-        //     if($icon_extension != 'svg' && $icon_extension != 'webp'){
-        //     $icon_picture = Image::make($icon->getRealPath());
-        //     $width = Image::make($icon->getRealPath())->width();
-        //     $height = Image::make($icon->getRealPath())->height();
-        //      /*Upload Original Image*/
-        //     $icon_picture->save($destinationOriginal .'/'. $icon_name );
-        //     $icon_picture->resize($medium_width, $medium_height, function($constraint){
-        //       $constraint->aspectRatio();
-        //     })->save($destinationPath_medium .'/'. $icon_name );
-
-
-        //     }else{
-        //       move_uploaded_file($_FILES["icon"]["tmp_name"], $destinationPath_medium.'/'.$icon_name);
-        //     }
-        //     $data->icon = $icon_name;
-        //   }
 
         // Update Thumbnail
         if ($request->hasfile('thumbnail')) {
@@ -367,7 +343,7 @@ class PostController extends Controller
             $_thumbnail = $request->file('thumbnail')->getClientOriginalName();
             $thumbnail_extension = $request->file('thumbnail')->getClientOriginalExtension();
             $_thumbnail = explode('.', $_thumbnail);
-            $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(40) . '.' . $thumbnail_extension;
+            $thumbnail_name = Str::slug($_thumbnail[0]) . '-' . Str::random(5) . '.' . $thumbnail_extension;
 
             if ($thumbnail_extension != 'svg' && $thumbnail_extension != 'webp') {
                 $thumbnail_picture = Image::make($thumbnail->getRealPath());
@@ -398,7 +374,7 @@ class PostController extends Controller
             $_page_thumbnail = $request->file('page_thumbnail')->getClientOriginalName();
             $page_thumbnail_extension = $request->file('page_thumbnail')->getClientOriginalExtension();
             $_page_thumbnail = explode('.', $_page_thumbnail);
-            $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(40) . '.' . $page_thumbnail_extension;
+            $page_thumbnail_name = Str::slug($_page_thumbnail[0]) . '-' . Str::random(5) . '.' . $page_thumbnail_extension;
 
             if ($page_thumbnail_extension != 'svg' && $page_thumbnail_extension != 'webp') {
                 $page_thumbnail_picture = Image::make($page_thumbnail->getRealPath());
@@ -429,7 +405,7 @@ class PostController extends Controller
             $_banner = $request->file('banner')->getClientOriginalName();
             $banner_extension = $request->file('banner')->getClientOriginalExtension();
             $_banner = explode('.', $_banner);
-            $banner_name = Str::slug($_banner[0]) . '-' . Str::random(40) . '.' . $banner_extension;
+            $banner_name = Str::slug($_banner[0]) . '-' . Str::random(5) . '.' . $banner_extension;
 
             if ($banner_extension != 'svg' && $banner_extension != 'webp') {
                 $banner_picture = Image::make($banner->getRealPath());

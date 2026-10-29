@@ -45,7 +45,7 @@ class PostDocController extends Controller
     {
        $validation = Validator::make($request->all(), [
         'document' => 'required',
-        'document.*' => 'mimes:doc,pdf,docx' 
+        'document.*' => 'mimes:doc,pdf,docx'
     ]);
 
        if($validation->passes()){
@@ -56,8 +56,8 @@ class PostDocController extends Controller
         $doc = explode('.', $doc);
         $document = Str::slug($doc[0]) . '-' . uniqid() . '.' . $extension;
 
-        $request->file('document')->move( public_path('uploads/doc/'), $document);      
-        $data['key_string'] = Str::random(40);
+        $request->file('document')->move( public_path('uploads/doc/'), $document);
+        $data['key_string'] = Str::random(5);
         $data['post_id'] = $request->post_id;
         $data['title'] = $request->title;
         $data['document'] = $document;
@@ -124,12 +124,12 @@ class PostDocController extends Controller
             $extension = $request->file('document')->getClientOriginalExtension();
             $doc = explode('.', $doc);
             $document = Str::slug($doc[0]) . '-' . uniqid() . '.' . $extension;
-            $request->file('document')->move( public_path('uploads/doc/'), $document); 
-            
+            $request->file('document')->move( public_path('uploads/doc/'), $document);
+
 
         $data->document = $document;
 
-    } 
+    }
 
     $data->title = $request->title;
     $data->ordering = $request->ordering;
@@ -152,22 +152,22 @@ class PostDocController extends Controller
     public function destroy($id)
     {
          $data = PostDocModel::find($id);
-         if($data->document){               
+         if($data->document){
                 if(file_exists(public_path('uploads/doc/' .  $data->document))){
                     unlink('uploads/doc/' . $data->document);
-                }                   
+                }
             }
          $data->delete();
          return response('Delete Successful.');
     }
 
- // Delete doc file 
+ // Delete doc file
      function delete_doc_file(PostDocModel $postDocModel, $id){
          $data = PostDocModel::find($id);
-         if($data->document){               
+         if($data->document){
                 if(file_exists(public_path('uploads/doc/' .  $data->document))){
                     unlink('uploads/doc/' . $data->document);
-                }                   
+                }
             }
          $data->document = NULL;
          $data->save();
