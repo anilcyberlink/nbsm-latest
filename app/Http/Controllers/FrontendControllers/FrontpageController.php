@@ -109,10 +109,12 @@ class FrontpageController extends Controller
         }
         $data = PostModel::where('uri', $uri)->orWhere('page_key', $uri)->first();
         $tmpl['template'] = 'single';
-        if ($tmpl['template']) {
+        if ($data['template']) {
             $data['template'] = $data['template'];
         }
-
+        else{
+            $data['template'] = $tmpl['template'];
+        }
         if ($data->id) {
             $data->visiter = $data->visiter + 1;
             $data->save();
@@ -121,11 +123,49 @@ class FrontpageController extends Controller
         $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->orderBy('ordering', 'asc')->paginate(12);
         $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
         $pos_type = PostTypeModel::where('id', $data->post_type)->first();
-        $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', 0)->orderBy('post_order', 'desc')->get();
+        $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', 0)->where('status','1')->orderBy('post_order', 'desc')->get();
         $contact = PostTypeModel::where('id', '20')->first();
 
-        // dd($data,$data_child);
+        // dd($data,$data_child, $data['template']);
+        if($data->post_parent != '0'){
+            if ($data['template_child']) {
+                $data['template'] = $data['template_child'];
+            }
+
+            $related = PostModel::where('post_type', $pos_type->id)->where('post_parent', $data->post_parent)->where('status','1')->orderBy('post_order', 'asc')->get();
+        }
+
         return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related', 'contact'));
+    }
+
+    public function pagedetail_child($parenturi, $uri)
+    {
+        $data = PostModel::where('uri', $uri)->orWhere('page_key', $uri)->first();
+
+        $tmpl['template'] = 'single';
+        if ($tmpl['template']) {
+            $data['template'] = $data['template'];
+        }
+
+        if ($data->id) {
+            $data->visiter = $data->visiter + 1;
+            $data->save();
+        }
+
+        $data_child = PostModel::where('id', $data['post_parent'])->first();
+        if ($data_child) {
+
+            $data['template'] = $data_child['template_child'];
+        }
+        $associated_posts = array();
+        if ($data) {
+            $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->get();
+        }
+        $post_id = $data->id;
+        $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
+        $related = PostModel::where('post_type', 16)->where('post_parent', '!=', 0)->get();
+        $pos_type = PostTypeModel::where('id', $data->post_type)->first();
+        return view('themes.default.' . $data['template'] . '', compact('related', 'data', 'data_child', 'associated_posts', 'documents', 'pos_type'));
     }
 
     // SEARCH
@@ -284,36 +324,6 @@ class FrontpageController extends Controller
     }
 
     // SEARCH END
-
-    public function pagedetail_child($parenturi, $uri)
-    {
-        $data = PostModel::where('uri', $uri)->orWhere('page_key', $uri)->first();
-
-        $tmpl['template'] = 'single';
-        if ($tmpl['template']) {
-            $data['template'] = $data['template'];
-        }
-
-        if ($data->id) {
-            $data->visiter = $data->visiter + 1;
-            $data->save();
-        }
-
-        $data_child = PostModel::where('id', $data['post_parent'])->first();
-        if ($data_child) {
-
-            $data['template'] = $data_child['template_child'];
-        }
-        $associated_posts = array();
-        if ($data) {
-            $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->get();
-        }
-        $post_id = $data->id;
-        $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
-        $related = PostModel::where('post_type', 16)->where('post_parent', '!=', 0)->get();
-        $pos_type = PostTypeModel::where('id', $data->post_type)->first();
-        return view('themes.default.' . $data['template'] . '', compact('related', 'data', 'data_child', 'associated_posts', 'documents', 'pos_type'));
-    }
 
     public function portfolio($uri)
     {
