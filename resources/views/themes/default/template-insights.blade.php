@@ -46,10 +46,12 @@
                             <div class="res-publication-excerpt">
                                 {!! $child->post_excerpt !!}
                             </div>
-                            <span class="res-readmore">Read more <svg viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M13 6l6 6-6 6" />
-                                </svg></span>
+                            <a href="{{ route('page.pagedetail', ['parent' => $data->uri, 'uri' => $child->uri]) }}" style="margin-top:28px;">
+                                <span class="res-readmore">Read more <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M13 6l6 6-6 6" />
+                                    </svg></span>
+                            </a>
                         </div>
                     </div>
                 @endforeach
