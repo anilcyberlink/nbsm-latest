@@ -190,6 +190,20 @@ function post_parent($uri)
     return false;
 }
 
+function get_post_parent_title($uri)
+{
+    $post = PostModel::where('uri', $uri)->with('parent:id,post_title')->first();
+
+    return $post?->parent?->post_title ?? false;
+}
+function get_post_parent_uri($id)
+{
+    $post = PostModel::where('id', $id)->first();
+
+    return $post?->uri ?? false;
+}
+
+
 // Get parent category name
 function get_parent_name($id)
 {

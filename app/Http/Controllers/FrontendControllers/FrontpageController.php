@@ -128,6 +128,7 @@ class FrontpageController extends Controller
 
         // dd($data,$data_child, $data['template']);
         if($data->post_parent != '0'){
+            // dd('child',$data, $data['template'],$parent);
             if ($data['template_child']) {
                 $data['template'] = $data['template_child'];
             }

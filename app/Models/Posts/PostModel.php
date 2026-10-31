@@ -58,6 +58,12 @@ class PostModel extends Model
     {
         return $this->hasMany('App\Models\Posts\AssociatedPostModel', 'post_id');
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(PostModel::class, 'post_parent', 'id');
+    }
+
     public function post_child()
     {
         return $this->hasMany(PostModel::class, 'post_parent', 'id')->where('status', 1)->orderBy('post_order', 'asc');
