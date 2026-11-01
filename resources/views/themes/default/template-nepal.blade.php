@@ -8,7 +8,7 @@
     <section class="page-header">
         <div class="ascent-strip" id="ascent-strip" aria-hidden="true"></div>
         <div class="page-header-bg">
-            <img src="{{ asset('themes-assets/images/nbsm-default.jpg') }}" alt="NBSM Insights Banner">
+            <img src="{{ $data->banner ? asset('uploads/original/'.$data->banner) : asset('themes-assets/images/nbsm-default.jpg') }}" alt="{{ $data->post_title }}">
         </div>
         <div class="wrap">
             <div class="breadcrumb">
