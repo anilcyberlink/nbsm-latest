@@ -1,4 +1,5 @@
 var editor_config = {
+  license_key: 'gpl',
   path_absolute: "/",
   selector: 'textarea.my-editor',
   relative_urls: false,
