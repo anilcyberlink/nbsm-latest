@@ -33,6 +33,7 @@
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <script>
         var editor_config = {
+            license_key: 'gpl',
             path_absolute: "/",
             selector: 'textarea.my-editor',
             relative_urls: false,
